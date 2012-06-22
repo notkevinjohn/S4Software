@@ -1,0 +1,4 @@
+ if(currentMillis - previousMillis > interval)       {          previousMillis = currentMillis;             SpiSerial.print("#");      }
+!01050001@!03000500@!01050000@!03000500@
+!01050001@!03000500@!01050000@!03000500@
+##

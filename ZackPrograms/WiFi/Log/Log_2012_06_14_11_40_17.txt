@@ -1,0 +1,45 @@
+Hello 243
+Hello 244
+Hello 245
+Hello 246
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+set wlan join 0
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+join DeviceTestingHello 7
+Hello 8
+Hello 9
+Hello 10
+Hello 11
+Hello 12
+Hello 13
+Hello 14
+Hello 15
+Hello 16
+Hello 17
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+set wlan join 0
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
