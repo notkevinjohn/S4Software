@@ -1,5 +1,6 @@
 package SocketHandelers;
 
+import java.awt.List;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -8,6 +9,7 @@ import Events.ICompletePayloadTXEventListener;
 import IOStream.GetStreamIn;
 import IOStream.SendStreamOut;
 import Main.Controller;
+import Sockets.IPSet;
 
 public class PayloadDataController extends Thread
 {
@@ -20,17 +22,20 @@ public class PayloadDataController extends Thread
 	private long lastPingTime = System.currentTimeMillis();
 	public long lastReadTime = System.currentTimeMillis();
 	public long timeout = 1000;
-	public boolean payloadIsConnected = false;
+	public String payloadIP;
+	public boolean isPayloadIPSet = false;
+	private IPSet ipSet;
+	private String[] IPPair;
 	
-	public PayloadDataController(Socket socket)
+	public PayloadDataController(Socket socket , IPSet ipSet)
 	{
 		this.socket = socket;
+		this.ipSet = ipSet;
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
 		this.start();
-		payloadIsConnected = true;
-		streamOut.streamOut("#");
+		streamOut.streamOut("!");
 	}
 	
 	public void run() 
@@ -49,7 +54,7 @@ public class PayloadDataController extends Thread
 			if(available > 0)
 			{
 				  streamInString = getStreamIn.StreamIn(socket);
-				  if(!streamInString.equals("Pong"))  // Pong incoming
+				  if(!streamInString.startsWith("Pong"))  // Pong incoming
 				  {
 					  CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!!
 						Object[] listeners = Controller.listenerList.getListenerList(); 
@@ -66,6 +71,12 @@ public class PayloadDataController extends Thread
 				  }
 				  else
 				  {
+					  if(!isPayloadIPSet)
+					  {
+						  streamInString = streamInString.substring(5);
+						  System.out.println(streamInString);
+						  isPayloadIPSet = true;
+					  }
 					  pingLastReadTime = System.currentTimeMillis();
 				  }
 			}
@@ -84,6 +95,7 @@ public class PayloadDataController extends Thread
 	public void StreamOut(String sendText)
 	{
 		streamOut.streamOut(sendText);
+		streamOut.streamOut("!");
 	}
 	
 	public boolean Disconnected()

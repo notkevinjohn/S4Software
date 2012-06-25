@@ -6,8 +6,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Vector;
 
-import Main.Controller;
 import SocketHandelers.TerminalDataController;
+import Sockets.IPSet;
 
 public class ConnectTerminalSocket extends Thread
 {
@@ -16,11 +16,11 @@ public class ConnectTerminalSocket extends Thread
 	public Vector<Socket> socketTerminalList; // change to socket ip pair later
 	public Vector<TerminalDataController> terminalDataList;
 	public int socketTerminalIndex = 0;
-	private Controller controller;
+	private IPSet ipSet;
 	
-	public ConnectTerminalSocket(Controller controller)
+	public ConnectTerminalSocket(IPSet ipSet)
 	{
-		this.controller = controller;
+		this.ipSet = ipSet;
 		socketTerminalList = new Vector<Socket>();
 		terminalDataList = new Vector<TerminalDataController>();
 		try 
@@ -38,14 +38,13 @@ public class ConnectTerminalSocket extends Thread
 		try 
 		{
 			Socket socket = serverTerminalSocket.accept();
-			
 			TerminalDataController terminalDataController = new TerminalDataController(socket);
 			terminalDataList.add(terminalDataController);
 			
 			socketTerminalList.add(socketTerminalIndex, socket);
 			socketTerminalIndex++;
-			controller.UpDateTerminalList(socketTerminalList, terminalDataList);
-			controller.terminalIsConnected = true;
+			ipSet.UpDateTerminalList(socketTerminalList, terminalDataList);
+			//controller.terminalIsConnected = true;
 		}
 		catch (UnknownHostException e1) 
 		{

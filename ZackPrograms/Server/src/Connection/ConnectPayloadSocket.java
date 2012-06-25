@@ -1,12 +1,16 @@
 package Connection;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Vector;
 
+import Data.Payload;
+import Data.GetPayloadName;
 import Main.Controller;
 import SocketHandelers.PayloadDataController;
+import Sockets.IPSet;
 
 public class ConnectPayloadSocket extends Thread
 {
@@ -15,16 +19,21 @@ public class ConnectPayloadSocket extends Thread
 	public Vector<Socket> socketPayloadList; // change to socket ip pair later
 	public Vector<PayloadDataController> payloadDataList;
 	public int socketPayloadIndex = 0;
-	private Controller controller;
-	
-	public ConnectPayloadSocket(Controller controller)
+	private IPSet ipSet;
+	private Payload payload;
+	private Vector<Payload> payloadList;
+	public ConnectPayloadSocket(IPSet ipSet)
 	{
-		this.controller = controller;
+		this.ipSet = ipSet;
 		socketPayloadList = new Vector<Socket>();
+		payloadList = new Vector<Payload>();
+		
 		payloadDataList = new Vector<PayloadDataController>();
 		try 
 		{
 			serverInSocket = new ServerSocket(InPort);
+			
+			
 		} 
 		catch (IOException e) 
 		{
@@ -38,13 +47,25 @@ public class ConnectPayloadSocket extends Thread
 		{
 			
 			Socket socket = serverInSocket.accept();
-			PayloadDataController payloadDataController = new PayloadDataController(socket);
-			payloadDataList.add(payloadDataController);
+			payload = new Payload();
+			GetPayloadName getPayloaName = new GetPayloadName();
+			payload.socket = socket;
+			payload.deviceName = getPayloaName.getPName(socket);
+			System.out.println(payload.deviceName);
+			System.out.println(payload.deviceName);
+			System.out.println(payload.deviceName);
+			System.out.println(payload.deviceName);
+			payloadList.add(payload);
 			
+			PayloadDataController payloadDataController = new PayloadDataController(socket,ipSet);
+			
+			payloadDataList.add(payloadDataController);
 			socketPayloadList.add(socketPayloadIndex, socket);
+			
+			
 			socketPayloadIndex++;
-			controller.UPDatePayloadList(socketPayloadList,payloadDataList);
-			controller.payloadIsConnected = true;
+			ipSet.UPDatePayloadList(socketPayloadList,payloadDataList);
+			//controller.payloadIsConnected = true;
 		}
 		catch (UnknownHostException e1) 
 		{

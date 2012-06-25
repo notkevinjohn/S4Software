@@ -20,6 +20,9 @@ public class TerminalDataController extends Thread
 	public long pingLastReadTime = System.currentTimeMillis();
 	public long lastPingTime = System.currentTimeMillis();
 	public long timeout = 1000;
+	public boolean terminalConnected = false;
+	public String payloadConnectIP = "";
+	public boolean isPayloadIPSet = false;
 	
 	public TerminalDataController(Socket socket)
 	{
@@ -33,6 +36,8 @@ public class TerminalDataController extends Thread
 	
 	public void run() 
 	{
+		
+		
 		while(true)
 		{
 			try 
@@ -47,8 +52,23 @@ public class TerminalDataController extends Thread
 			if(available > 0)
 			{
 				  streamInString = getStreamIn.StreamIn(socket);
-				  if(!streamInString.equals("Pong"))  // Pong incoming
-				  {			  
+				  
+				  if(!streamInString.startsWith("ConnectTo:"))
+				  {
+					  if(!isPayloadIPSet)
+					  {
+						  streamInString = streamInString.substring(10);
+						  System.out.println(streamInString);
+						  isPayloadIPSet = true;
+					  }
+					  System.out.println("Connect!!!");
+				  }
+				  else if(streamInString.equals("Pong"))
+				  {
+					  pingLastReadTime = System.currentTimeMillis();
+				  }
+				  else
+				  {
 					  CompleteTerminalTXEvent complete = new CompleteTerminalTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!!
 						Object[] listeners = Controller.listenerList.getListenerList(); 
 				   		for (int i=0; i<listeners.length; i+=2) 
@@ -59,10 +79,6 @@ public class TerminalDataController extends Thread
 				             }
 				        } 	
 					  lastReadTime = System.currentTimeMillis();
-				  }
-				  else
-				  {
-					  pingLastReadTime = System.currentTimeMillis();
 				  }
 			}
 			
