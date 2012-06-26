@@ -1,0 +1,11 @@
+asdf
+$$$
+CMD
+##get e
+get e
+####get e
+get e
+#$$$
+$$$
+######Lost Connection...
+Attempting Reconnect...

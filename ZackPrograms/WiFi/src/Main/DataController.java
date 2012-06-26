@@ -35,6 +35,7 @@ public class DataController extends Thread
 	public int port;
 	public WiFiWriter wiFiWriter;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
+	public String pongString = "Pong"; // need to dynamically change if connected to server or payload!!!
 	
 	public void Initilize(Socket socket, String ip, int port)
 	{
@@ -115,7 +116,7 @@ public class DataController extends Thread
 	
 	public void Pong()
 	{
-		streamOut.streamOut("Pong"); // Ping outgoing
+		streamOut.streamOut(pongString); // Ping outgoing need to change if connected directly or separately!!!!
 	
 	}
 	public void updateText(final String _streamInString, final SimpleAttributeSet type) {

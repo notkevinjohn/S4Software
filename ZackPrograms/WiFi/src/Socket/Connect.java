@@ -62,8 +62,8 @@ public class Connect
 		{	
 			new GetIP(IpStorage);
 		}
-
-		if(socket.isConnected())
+		SendName sendName = new SendName();
+		if(sendName.sendName(socket))
 		{
 			dataController = new DataController();
 			dataController.Initilize(socket, ip, port); //loop();

@@ -1,0 +1,13 @@
+*HELLO* 2.23, 04-26-2011 on 131C11
+<2.23> 
+show battery 
+Batt=3064
+<2.23> *OPEN*
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
