@@ -13,7 +13,7 @@ public class CompleteTerminalTXEventListener implements ICompleteTerminalTXEvent
 	
 	public void CompleteTXEventHandler(CompleteTerminalTXEvent event) 
 	{
-		if(controller.payloadIsConnected)
+		if(controller.payloadDataList != null && controller.payloadDataList.size() >= event.payloadNumber)
 		{
 			controller.payloadDataList.get(event.payloadNumber).StreamOut(event.sendString);
 		}

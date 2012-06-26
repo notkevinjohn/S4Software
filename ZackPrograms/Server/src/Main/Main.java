@@ -1,23 +1,20 @@
 package Main;
 
-import Sockets.IPSet;
 import Connection.ConnectPayloadSocket;
+import Connection.ConnectTermToPayload;
 import Connection.ConnectTerminalSocket;
 
 public class Main 
 {
-	private static Controller controller;
-	private static IPSet ipSet;
-	
 	public static void main(String[] args) 
 	{
-		controller = new Controller();
-		ipSet = new IPSet();
-		ConnectPayloadSocket connectPayloadSocket = new ConnectPayloadSocket(ipSet);
-		ConnectTerminalSocket connectTerminalSocket = new ConnectTerminalSocket(ipSet);
+		Controller controller = new Controller();
+		ConnectTermToPayload connectTermToPayload = new ConnectTermToPayload();
+		ConnectPayloadSocket connectPayloadSocket = new ConnectPayloadSocket(controller);
+		ConnectTerminalSocket connectTerminalSocket = new ConnectTerminalSocket(controller, connectTermToPayload);
 		connectPayloadSocket.start();
 		connectTerminalSocket.start();
-		
+		connectTermToPayload.connectTermToPayload(connectPayloadSocket,connectTerminalSocket);
 	}
 
 }

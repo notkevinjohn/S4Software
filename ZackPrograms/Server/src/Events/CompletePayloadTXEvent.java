@@ -4,9 +4,6 @@ import java.util.EventObject;
 
 public class CompletePayloadTXEvent extends EventObject 
 {
-		/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4079343760417562062L;
 	public int payloadNumber;
 	public String sendString;

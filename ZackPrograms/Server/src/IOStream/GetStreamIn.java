@@ -17,9 +17,9 @@ public class GetStreamIn
 		try 
 		{
 			int available = socket.getInputStream().available();
-			byte chunk[] = new byte[available];
-			socket.getInputStream().read(chunk, 0, available);
-			recieve = new String(chunk);
+			byte packet[] = new byte[available];
+			socket.getInputStream().read(packet, 0, available);
+			recieve = new String(packet);
 	    } 
 		catch (IOException e) 
 		{

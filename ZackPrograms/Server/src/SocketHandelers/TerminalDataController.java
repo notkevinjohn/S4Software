@@ -23,15 +23,19 @@ public class TerminalDataController extends Thread
 	public boolean terminalConnected = false;
 	public String payloadConnectIP = "";
 	public boolean isPayloadIPSet = false;
+	public int payloadElementNubmer;
 	
-	public TerminalDataController(Socket socket)
+	public TerminalDataController(Socket socket, int payloadElementNubmer)
 	{
 		this.socket = socket;
+		this.payloadElementNubmer = payloadElementNubmer;
+		
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
+		
 		this.start();
-		streamOut.streamOut("Ping"); // Ping outgoing
+		streamOut.streamOut("@"); // Complete handshake
 	}
 	
 	public void run() 
@@ -53,23 +57,14 @@ public class TerminalDataController extends Thread
 			{
 				  streamInString = getStreamIn.StreamIn(socket);
 				  
-				  if(!streamInString.startsWith("ConnectTo:"))
-				  {
-					  if(!isPayloadIPSet)
-					  {
-						  streamInString = streamInString.substring(10);
-						  System.out.println(streamInString);
-						  isPayloadIPSet = true;
-					  }
-					  System.out.println("Connect!!!");
-				  }
-				  else if(streamInString.equals("Pong"))
+
+				  if(streamInString.equals("Pong"))
 				  {
 					  pingLastReadTime = System.currentTimeMillis();
 				  }
 				  else
 				  {
-					  CompleteTerminalTXEvent complete = new CompleteTerminalTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!!
+					  CompleteTerminalTXEvent complete = new CompleteTerminalTXEvent(this,payloadElementNubmer,streamInString); 
 						Object[] listeners = Controller.listenerList.getListenerList(); 
 				   		for (int i=0; i<listeners.length; i+=2) 
 				   		{
@@ -83,11 +78,6 @@ public class TerminalDataController extends Thread
 			}
 			
 			Ping();
-			
-			//if(Disconnected())
-			//{
-			//	System.out.println("Disconnected!"); // Add reconnect code
-		//	}
 		}
 	}
 	

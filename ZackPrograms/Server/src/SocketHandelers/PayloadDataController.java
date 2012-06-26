@@ -1,6 +1,5 @@
 package SocketHandelers;
 
-import java.awt.List;
 import java.io.IOException;
 import java.net.Socket;
 
@@ -9,33 +8,29 @@ import Events.ICompletePayloadTXEventListener;
 import IOStream.GetStreamIn;
 import IOStream.SendStreamOut;
 import Main.Controller;
-import Sockets.IPSet;
 
 public class PayloadDataController extends Thread
 {
 	private Socket socket;
-	public SendStreamOut streamOut;
-	public String streamInString;
-	public GetStreamIn getStreamIn;
 	private int available = 0;
 	private long pingLastReadTime = System.currentTimeMillis();
 	private long lastPingTime = System.currentTimeMillis();
-	public long lastReadTime = System.currentTimeMillis();
-	public long timeout = 1000;
-	public String payloadIP;
-	public boolean isPayloadIPSet = false;
-	private IPSet ipSet;
-	private String[] IPPair;
+	private SendStreamOut streamOut;
+	private String streamInString;
+	private GetStreamIn getStreamIn;
+	private long lastReadTime = System.currentTimeMillis();
+	private long timeout = 1000;
 	
-	public PayloadDataController(Socket socket , IPSet ipSet)
+	public PayloadDataController(Socket socket)
 	{
 		this.socket = socket;
-		this.ipSet = ipSet;
+		
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
+		
 		this.start();
-		streamOut.streamOut("!");
+		streamOut.streamOut("@"); // complete handshake
 	}
 	
 	public void run() 
@@ -56,7 +51,7 @@ public class PayloadDataController extends Thread
 				  streamInString = getStreamIn.StreamIn(socket);
 				  if(!streamInString.startsWith("Pong"))  // Pong incoming
 				  {
-					  CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!!
+					  CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!! create list and loop through?
 						Object[] listeners = Controller.listenerList.getListenerList(); 
 				   		for (int i=0; i<listeners.length; i+=2) 
 				   		{
@@ -71,22 +66,11 @@ public class PayloadDataController extends Thread
 				  }
 				  else
 				  {
-					  if(!isPayloadIPSet)
-					  {
-						  streamInString = streamInString.substring(5);
-						  System.out.println(streamInString);
-						  isPayloadIPSet = true;
-					  }
 					  pingLastReadTime = System.currentTimeMillis();
 				  }
 			}
-			Ping();
-
 			
-			//if(Disconnected())
-			//{
-			//	System.out.println("Disconnected!"); // Add reconnect code
-			//}
+			Ping();
 			
 		
 		}

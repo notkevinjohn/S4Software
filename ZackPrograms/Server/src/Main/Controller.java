@@ -1,7 +1,5 @@
 package Main;
 
-import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Vector;
 import Events.CompletePayloadTXEventListener;
 import Events.CompleteTerminalTXEventListener;
@@ -9,34 +7,25 @@ import Events.ICompletePayloadTXEventListener;
 import Events.ICompleteTerminalTXEventListener;
 import SocketHandelers.PayloadDataController;
 import SocketHandelers.TerminalDataController;
-import Sockets.IPSet;
 
 public class Controller extends Thread
 {
 	public Vector<PayloadDataController> payloadDataList;
 	public Vector<TerminalDataController> terminalDataList;
-	public Vector<Socket> socketTerminalList;
-	public Vector<Socket> socketPayloadList;
-	public boolean terminalIsConnected;
-	public boolean payloadIsConnected;
 	
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	
 	public Controller()
 	{
-		terminalIsConnected = false;
-		payloadIsConnected = false;
 		this.start();
 	}
 	
-	public void UpDateTerminalList(Vector<Socket> socketTerminalList, Vector<TerminalDataController> terminalDataList)
+	public void UpDateTerminalList(Vector<TerminalDataController> terminalDataList)
 	{
-		this.socketTerminalList = socketTerminalList;
 		this.terminalDataList = terminalDataList;
 	}
-	public void UPDatePayloadList(Vector<Socket> socketPayloadList,Vector<PayloadDataController> payloadDataList)
+	public void UPDatePayloadList(Vector<PayloadDataController> payloadDataList)
 	{
-		this.socketPayloadList = socketPayloadList;
 		this.payloadDataList = payloadDataList;
 	}
 	
@@ -64,6 +53,5 @@ public class Controller extends Thread
 	{
 		listenerList.add(ICompleteTerminalTXEventListener.class, completeTerminalTXEventListener);
 	}
-	
 
 }
