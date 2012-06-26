@@ -45,7 +45,7 @@ public class ConnectTerminalSocket extends Thread
 		{
 			Socket socket = serverTerminalSocket.accept();
 			
-			GetName getName = new GetName();
+			GetName getName = new GetName(controller);
 			terminal = new Terminal();
 			terminal.socket = socket;
 			terminal.deviceName = getName.getPName(socket);
