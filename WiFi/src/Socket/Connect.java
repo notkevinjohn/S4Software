@@ -21,7 +21,6 @@ public class Connect extends Thread
 	private DataController dataController;
 	private SocketAddress socketAddress;
 	private int socketTimeout = 3000;
-	private boolean isConnected = false;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	public Socket socket;
 	public ArrayList<IPData> IpStorage;
@@ -61,7 +60,6 @@ public class Connect extends Thread
 		} 
 		catch (UnknownHostException e1) 
 		{
-			//new GetIP(IpStorage);
 		} 
 		catch (IOException e1) 
 		{	
@@ -69,12 +67,6 @@ public class Connect extends Thread
 		}
 		
 		this.start();
-		
-		if(isConnected)
-		{
-			dataController = new DataController();
-			dataController.Initilize(socket, ip, port); //loop();
-		}
 	}	
 	public void run()
 	{
@@ -83,7 +75,8 @@ public class Connect extends Thread
 		SendName sendName = new SendName();
 		if(sendName.sendName(socket))
 		{
-			isConnected = true;
+			dataController = new DataController();
+			dataController.Initilize(socket, ip, port); 
 		}
 	}
 	

@@ -20,8 +20,9 @@ public class DeviceConnectButtonActionListener implements ActionListener
 	{
 		if(checkBoxGroup.getSelectedCheckbox() != null)
 		{
-			sendName.TXName(checkBoxGroup.getSelectedCheckbox().getLabel());
-			System.out.println(checkBoxGroup.getSelectedCheckbox().getLabel());
+			String sendString = "DeviceName" + checkBoxGroup.getSelectedCheckbox().getLabel();
+			sendName.TXName(sendString);
+			System.out.println(sendString);
 		}
 		else
 		{

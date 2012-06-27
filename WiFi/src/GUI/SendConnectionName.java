@@ -12,12 +12,10 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Checkbox;
 import java.awt.CheckboxGroup;
 import javax.swing.BoxLayout;
-
 import Socket.SendName;
-
 import Componets.Connection.DeviceConnectButton;
 import Componets.Connection.RefreshButton;
-import Data.Payload;
+import Data.TerminalPayloadList;
 
 public class SendConnectionName extends JFrame
 {
@@ -26,6 +24,7 @@ public class SendConnectionName extends JFrame
 	private JScrollPane deviceScrollPane;
 	private JPanel deviceNamePanel;
 	private JPanel contentPane;
+	private SendName sendName;
 	public ArrayList<JCheckBox> selectArray = new ArrayList<JCheckBox>();
 	public ArrayList<JTextField> deviceNames = new ArrayList<JTextField>();
 	public ArrayList<String> deviceStringNames = new ArrayList<String>();
@@ -33,10 +32,11 @@ public class SendConnectionName extends JFrame
 	public RefreshButton refreshButton;
 	public DeviceConnectButton deviceConnectButton;
 	public CheckboxGroup checkBoxGroup;
-	public  Vector<Payload> payloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	
 	public SendConnectionName(SendName sendName) 
 	{
+		this.sendName = sendName;
 		frame = new JFrame("Select Payload");
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -66,9 +66,13 @@ public class SendConnectionName extends JFrame
 		contentPane.add(deviceConnectButton);
 		
 		
-		redrawDeviceNames(deviceStringNames);
-		deviceConnectButton.setActionListener(sendName, checkBoxGroup);
+		
+		
 		frame.repaint();
+		if(payloadListVector != null)
+		{
+		redrawDeviceNames(deviceStringNames);
+		}
 	}
 
 	public void redrawDeviceNames(ArrayList<String> deviceStringNames)
@@ -79,20 +83,22 @@ public class SendConnectionName extends JFrame
 		deviceScrollPane.setViewportView(deviceNamePanel);
 		deviceNamePanel.setLayout(new BoxLayout(deviceNamePanel, BoxLayout.Y_AXIS));
 		
-		int deviceSize = 10;//deviceStringNames.size();
+		int deviceSize = payloadListVector.size();
 		
 		checkBoxGroup = new CheckboxGroup();
 		
 		for(int i =0; i< deviceSize; i++)
 		{
-			String name = "hi";//deviceStringNames.get(i);
+			String name = payloadListVector.get(i).deviceName;
 			deviceNamePanel.add(new Checkbox(name,checkBoxGroup,false));
 		}
-		
+		deviceConnectButton.setActionListener(sendName, checkBoxGroup);
 		
 	}
-	public void refreshPayloadList(Vector<Payload> payloadList)
+	public void refreshPayloadList(Vector<TerminalPayloadList> payloadListVector)
 	{
-		this.payloadList = payloadList;
+		this.payloadListVector = payloadListVector;
+		redrawDeviceNames(deviceStringNames);
+		
 	}
 }

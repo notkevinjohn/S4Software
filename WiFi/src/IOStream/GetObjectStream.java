@@ -4,14 +4,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.Vector;
-
-import Data.Payload;
+import Data.TerminalPayloadList;
 
 public class GetObjectStream 
 {
 	private Socket socket;
 	private  ObjectInputStream objectInputStream; 
-	public  Vector<Payload> payloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	
 	public GetObjectStream(Socket _socket)
 	{
@@ -20,7 +19,7 @@ public class GetObjectStream
 	
 
 	@SuppressWarnings("unchecked")
-	public  Vector<Payload> getObject(Socket _socket)	
+	public  Vector<TerminalPayloadList> getObject(Socket _socket)	
 	{
 		try 
 		{
@@ -28,10 +27,10 @@ public class GetObjectStream
 			
 			try 
 			{
-				if(objectInputStream.available() >0)
-				{
-				payloadList = (Vector<Payload>)objectInputStream.readObject();
-				}
+				//if(objectInputStream. available() >0)
+				//{
+					payloadListVector = (Vector<TerminalPayloadList>)objectInputStream.readUnshared();
+			//	}
 				
 			} catch (ClassNotFoundException e) 
 			{
@@ -44,7 +43,7 @@ public class GetObjectStream
 		{
 			e.printStackTrace();
 		}
-		return payloadList;
+		return payloadListVector;
 	}
 }
 

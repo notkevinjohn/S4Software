@@ -3,8 +3,7 @@ package Socket;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Vector;
-
-import Data.Payload;
+import Data.TerminalPayloadList;
 import GUI.SendConnectionName;
 import IOStream.GetObjectStream;
 import IOStream.GetStreamIn;
@@ -19,21 +18,22 @@ public class SendName
 	public String DeviceName;
 	private boolean deviceNameSet = true;
 	private GetObjectStream getObjectStream;
-	public  Vector<Payload> payloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	public SendConnectionName sendConnectionName;
+	
 	public boolean sendName(Socket socket)
 	{
 		getStreamIn = new GetStreamIn();
 		sendStreamOut = new SendStreamOut();
 		sendStreamOut.attachSocket(socket);
 		
-		sendConnectionName = new SendConnectionName(this);
-		sendStreamOut.streamOut("Refresh");
+		
 		getObjectStream = new GetObjectStream(socket);
 		
+		sendConnectionName = new SendConnectionName(this);
+		sendStreamOut.streamOut("Refresh");
 		while(deviceNameSet)
 		{
-			
 			try 
 			{
 				available = socket.getInputStream().available();
@@ -45,7 +45,7 @@ public class SendName
 			if(available > 0)
 			{
 				 streamInString = getStreamIn.StreamIn(socket);
-				 if(streamInString.equals("Ping"))
+				 if(streamInString.equals("#"))
 				 {
 					 sendStreamOut.streamOut("Pong");
 				 }
@@ -55,8 +55,10 @@ public class SendName
 					 
 				 }
 				 else if(streamInString.equals("Refresh"))
-				 {
+				 { 
+					
 					 sendConnectionName.refreshPayloadList(getObjectStream.getObject(socket));
+					
 				 }
 			}
 		}
