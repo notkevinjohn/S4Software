@@ -1,0 +1,11 @@
+$$$
+CMD
+get battery
+get battery
+############asdf
+asdf
+###$$$
+$$$
+##get battery
+get battery
+####

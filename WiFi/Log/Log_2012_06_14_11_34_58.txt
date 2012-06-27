@@ -1,0 +1,23 @@
+Hello 5647
+Hello 5648
+Hello 5649
+Hello 5650
+Hello 5651
+Hello 5652
+Hello 5653
+Hello 5654
+Hello 5655
+Hello 5656
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+get uart
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+

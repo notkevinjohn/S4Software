@@ -1,0 +1,7 @@
+*HELLO*
+
+ver
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+

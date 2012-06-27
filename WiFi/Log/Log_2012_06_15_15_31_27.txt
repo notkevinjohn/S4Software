@@ -1,0 +1,60 @@
+Hello 9
+Hello 10
+Hello 11
+asdf
+Hello 12
+Hello 13
+Hello 14
+Hello 15
+Hello 16
+Hello 17
+Hello 18
+asdf
+Hello 19
+Hello 20
+Hello 21
+Hello 22
+Hello 23
+Hello 24
+Hello 25
+Hello 26
+Hello 27
+Hello 28
+Hello 29
+Hello 30
+Hello 31
+Hello 32
+Hello 33
+Hello 34
+Hello 35
+Hello 36
+Hello 37
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+join DeviceTestingHello 5
+Hello 7
+Hello 8
+Hello 9
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+sdfa
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+

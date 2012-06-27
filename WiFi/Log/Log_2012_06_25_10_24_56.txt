@@ -1,0 +1,50 @@
+*HELLO*Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+#
+#
+#
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+#
+#
+#
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+*HELLO*open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+open
+#
+Hello 43
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+

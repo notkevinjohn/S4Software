@@ -1,0 +1,50 @@
+pongHello 28
+pongHello 29
+pongHello 30
+pongHello 32
+pongHello 33
+pongHello 34
+pongHello 35
+pongHello 36
+pongHello 37
+pongHello 38
+pongHello 39
+pongHello 40
+pongHello 41
+pongHello 42
+pongHello 43
+pongHello 44
+pongHello 45
+pongHello 46
+pongHello 47
+pongHello 48
+pongHello 49
+pongHello 50
+pongHello 51
+pongHello 52
+pongHello 53
+pongHello 54
+pongHello 55
+pongHello 56
+pongHello 57
+pongHello 58
+pongHello 59
+pongHello 60
+pongHello 61
+pongHello 62
+pongHello 63
+pongHello 64
+pongHello 65
+pongHello 66
+pongHello 67
+pongHello 68
+pongHello 69
+pongHello 70
+Lost Connection...
+Attempting Reconnect...
+Reconnected! 
+
+*HELLO*send asdf
+asdfasdf
+asdf
+get e
