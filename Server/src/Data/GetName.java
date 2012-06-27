@@ -18,12 +18,12 @@ public class GetName
 	public SendStreamOut sendStreamOut;
 	public String streamInString;
 	public String DeviceName;
-	public Vector<Payload> payloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	
 	public GetName(Controller controller) 
 	{
 		
-		this.payloadList = controller.payloadList;
+		this.payloadListVector = controller.payloadListVector;
 	}
 
 	public String getPName(Socket socket)
@@ -49,17 +49,19 @@ public class GetName
 				 System.out.println(streamInString);
 				 if(streamInString.startsWith("DeviceName"))
 				 {
+					
 					 String tempName = streamInString.substring(10);
 					 DeviceName = tempName.replaceAll("[\n\r]", "");
 					 System.out.print(DeviceName);
 					 deviceNameSet = false;
+					 
 				 }
 				 else if (streamInString.startsWith("Refresh"))
 				 {
 					 //Send block of stuff over
 					sendStreamOut.streamOut("Refresh");
 					System.out.println("Request Made for Payload names");
-					ObjectStream objectStream =  new ObjectStream(payloadList);
+					ObjectStream objectStream =  new ObjectStream(payloadListVector);
 					objectStream.sendObject(socket);
 				 }
 				 

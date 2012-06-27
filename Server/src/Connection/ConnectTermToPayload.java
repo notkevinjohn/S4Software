@@ -1,27 +1,30 @@
 package Connection;
 
+import Main.Controller;
 
-public class ConnectTermToPayload 
+
+public class ConnectTermToPayload
 {
 	public ConnectPayloadSocket connectPayloadSocket;
 	private int payloadElementNumber = 0;
 	private boolean isAvailable = false;
-
+	private Controller controller;
 	
 	public ConnectTermToPayload()
 	{
 	}
 	
-	public void connectTermToPayload(ConnectPayloadSocket _connectPayloadSocket, ConnectTerminalSocket connectTerminalSocket) 
+	public void connectTermToPayload(Controller controller, ConnectPayloadSocket _connectPayloadSocket, ConnectTerminalSocket connectTerminalSocket) 
 	{
 		this.connectPayloadSocket = _connectPayloadSocket;
+		this.controller = controller;
 	}
 	
 	public int Connect(String deviceName)
 	{
 		for(int i = 0; i < connectPayloadSocket.payloadDataList.size(); i++)
 		{
-			if(connectPayloadSocket.payloadList.get(i).deviceName.equals(deviceName))
+			if(controller.payloadList.get(i).deviceName.equals(deviceName))
 			{
 				payloadElementNumber = i;
 				isAvailable = true;

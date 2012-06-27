@@ -4,23 +4,24 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Vector;
-
-import Data.Payload;
+import Data.TerminalPayloadList;
 
 public class ObjectStream
 {
-	public Vector<Payload> payloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	
-	public ObjectStream(Vector<Payload> payloadList)
+	public ObjectStream(Vector<TerminalPayloadList> payloadListVector)
 	{
-		this.payloadList = payloadList;
+		this.payloadListVector = payloadListVector;
+		
 	}
 	public void sendObject(Socket socket)
 	{
 		ObjectOutputStream output;
 		try {
 			output = new ObjectOutputStream(socket.getOutputStream());
-			output.writeObject(payloadList);
+			//Object obj = (Object)payloadList;
+			output.writeUnshared(payloadListVector);
 			output.flush();
 		} catch (IOException e)
 		{

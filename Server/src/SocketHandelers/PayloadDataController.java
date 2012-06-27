@@ -20,11 +20,14 @@ public class PayloadDataController extends Thread
 	private GetStreamIn getStreamIn;
 	private long lastReadTime = System.currentTimeMillis();
 	private long timeout = 1000;
+	private Controller controller;
+	private String deviceName;
 	
-	public PayloadDataController(Socket socket)
+	public PayloadDataController(Socket socket, Controller controller, String deviceName)
 	{
 		this.socket = socket;
-		
+		this.deviceName = deviceName;
+		this.controller = controller;
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
@@ -51,25 +54,34 @@ public class PayloadDataController extends Thread
 				  streamInString = getStreamIn.StreamIn(socket);
 				  if(!streamInString.startsWith("Pong"))  // Pong incoming
 				  {
-					  CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,0,streamInString); // 0 is the first terminal need to assign this!!! create list and loop through?
-						Object[] listeners = Controller.listenerList.getListenerList(); 
-				   		for (int i=0; i<listeners.length; i+=2) 
-				   		{
-				             if (listeners[i]==ICompletePayloadTXEventListener.class)
-				             {
-				                 ((ICompletePayloadTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
-				             }
-				        } 	
+					  if(controller.terminalDataList != null)
+					  {
+						  for(int j = 0; j < controller.terminalDataList.size(); j++)
+						  {
+							  if(controller.terminalDataList.get(j).payloadDeviceName.equals(deviceName))
+							  {
+								  CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,j,streamInString); // 0 is the first terminal need to assign this!!! create list and loop through?
+									Object[] listeners = Controller.listenerList.getListenerList(); 
+							   		for (int i=0; i<listeners.length; i+=2) 
+							   		{
+							             if (listeners[i]==ICompletePayloadTXEventListener.class)
+							             {
+							                 ((ICompletePayloadTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
+							             }
+							        } 
+							  }
+				   		
+					  }
 				   		
 					  
 					  lastReadTime = System.currentTimeMillis();
-				  }
-				  else
-				  {
-					  pingLastReadTime = System.currentTimeMillis();
+					  }
+					  else
+					  {
+						  pingLastReadTime = System.currentTimeMillis();
+					  }
 				  }
 			}
-			
 			Ping();
 			
 		
@@ -79,7 +91,7 @@ public class PayloadDataController extends Thread
 	public void StreamOut(String sendText)
 	{
 		streamOut.streamOut(sendText);
-		streamOut.streamOut("!");
+		streamOut.streamOut("!"); /// find why this needs to be here
 	}
 	
 	public boolean Disconnected()

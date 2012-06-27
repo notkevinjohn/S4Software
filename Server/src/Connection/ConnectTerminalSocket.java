@@ -39,12 +39,8 @@ public class ConnectTerminalSocket extends Thread
 		}
 	}
 	
-	public void run() 
+	public void attachTerminal(Socket socket)
 	{
-		try 
-		{
-			Socket socket = serverTerminalSocket.accept();
-			
 			GetName getName = new GetName(controller);
 			terminal = new Terminal();
 			terminal.socket = socket;
@@ -54,7 +50,7 @@ public class ConnectTerminalSocket extends Thread
 			payloadSocketNubmer = connectTermToPayload.Connect(terminal.deviceName);
 			if(payloadSocketNubmer != 99)
 			{
-				TerminalDataController terminalDataController = new TerminalDataController(socket, payloadSocketNubmer);
+				TerminalDataController terminalDataController = new TerminalDataController(socket, payloadSocketNubmer, terminal.deviceName);
 				terminalDataList.add(terminalDataController);
 				controller.UpDateTerminalList(terminalDataList);
 			}
@@ -62,14 +58,25 @@ public class ConnectTerminalSocket extends Thread
 			{
 				System.out.println("Fail"); // need to make this do something to correct it
 			}
-		}
-		catch (UnknownHostException e1) 
+	}
+	public void run() 
+	{
+		while(true)
 		{
-			e1.printStackTrace();
-		} 
-		catch (IOException e1) 
-		{	
-			e1.printStackTrace();
+			try 
+			{
+				Socket socket = serverTerminalSocket.accept();
+				attachTerminal(socket);
+				
+			}
+			catch (UnknownHostException e1) 
+			{
+				e1.printStackTrace();
+			} 
+			catch (IOException e1) 
+			{	
+				e1.printStackTrace();
+			}
 		}
 	}
 }

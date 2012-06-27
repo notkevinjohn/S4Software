@@ -24,9 +24,11 @@ public class TerminalDataController extends Thread
 	public String payloadConnectIP = "";
 	public boolean isPayloadIPSet = false;
 	public int payloadElementNubmer;
+	public String payloadDeviceName;
 	
-	public TerminalDataController(Socket socket, int payloadElementNubmer)
+	public TerminalDataController(Socket socket, int payloadElementNubmer, String payloadDeviceName)
 	{
+		this.payloadDeviceName = payloadDeviceName;
 		this.socket = socket;
 		this.payloadElementNubmer = payloadElementNubmer;
 		

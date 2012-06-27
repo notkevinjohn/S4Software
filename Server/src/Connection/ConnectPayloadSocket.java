@@ -46,7 +46,7 @@ public class ConnectPayloadSocket extends Thread
 			payload.deviceName = getName.getPName(socket);
 			payloadList.add(payload);
 			
-			PayloadDataController payloadDataController = new PayloadDataController(socket);
+			PayloadDataController payloadDataController = new PayloadDataController(socket, controller, payload.deviceName);
 			payloadDataList.add(payloadDataController);
 			controller.UPDatePayloadList(payloadDataList,payloadList);
 		}

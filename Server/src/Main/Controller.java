@@ -2,7 +2,11 @@ package Main;
 
 import java.util.Vector;
 
+import Connection.ConnectPayloadSocket;
+import Connection.ConnectTermToPayload;
+import Connection.ConnectTerminalSocket;
 import Data.Payload;
+import Data.TerminalPayloadList;
 import Events.CompletePayloadTXEventListener;
 import Events.CompleteTerminalTXEventListener;
 import Events.ICompletePayloadTXEventListener;
@@ -15,12 +19,32 @@ public class Controller extends Thread
 	public Vector<PayloadDataController> payloadDataList;
 	public Vector<TerminalDataController> terminalDataList;
 	public Vector<Payload> payloadList;
+	//public PayloadListVector payloadListVector;
+	public TerminalPayloadList terminalPayloadList;
+	public Vector<TerminalPayloadList> payloadListVector;
 	
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	
 	public Controller()
-	{
+	{	
 		this.start();
+		ConnectTermToPayload connectTermToPayload = new ConnectTermToPayload();
+		ConnectPayloadSocket connectPayloadSocket = new ConnectPayloadSocket(this);
+		ConnectTerminalSocket connectTerminalSocket = new ConnectTerminalSocket(this, connectTermToPayload);
+		connectPayloadSocket.start();
+		connectTerminalSocket.start();
+		connectTermToPayload.connectTermToPayload(this,connectPayloadSocket,connectTerminalSocket);
+		
+		//payloadListVector = new PayloadListVector();
+		terminalPayloadList = new TerminalPayloadList();
+		payloadListVector = new Vector<TerminalPayloadList>();
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	public void UpDateTerminalList(Vector<TerminalDataController> terminalDataList)
@@ -31,6 +55,12 @@ public class Controller extends Thread
 	{
 		this.payloadDataList = payloadDataList;
 		this.payloadList = payloadList;
+		terminalPayloadList = new TerminalPayloadList();
+		terminalPayloadList.deviceName = payloadList.lastElement().deviceName;
+		terminalPayloadList.IP = payloadList.lastElement().socket.getLocalAddress().toString();
+		terminalPayloadList.localPort = payloadList.lastElement().socket.getLocalPort();
+		terminalPayloadList.remotePort = payloadList.lastElement().socket.getPort();
+		payloadListVector.add(terminalPayloadList);
 	}
 	
 	public void run() 
