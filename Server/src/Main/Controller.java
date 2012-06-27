@@ -1,6 +1,8 @@
 package Main;
 
 import java.util.Vector;
+
+import Data.Payload;
 import Events.CompletePayloadTXEventListener;
 import Events.CompleteTerminalTXEventListener;
 import Events.ICompletePayloadTXEventListener;
@@ -12,6 +14,7 @@ public class Controller extends Thread
 {
 	public Vector<PayloadDataController> payloadDataList;
 	public Vector<TerminalDataController> terminalDataList;
+	public Vector<Payload> payloadList;
 	
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	
@@ -24,9 +27,10 @@ public class Controller extends Thread
 	{
 		this.terminalDataList = terminalDataList;
 	}
-	public void UPDatePayloadList(Vector<PayloadDataController> payloadDataList)
+	public void UPDatePayloadList(Vector<PayloadDataController> payloadDataList, Vector<Payload> payloadList)
 	{
 		this.payloadDataList = payloadDataList;
+		this.payloadList = payloadList;
 	}
 	
 	public void run() 

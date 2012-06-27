@@ -2,9 +2,12 @@ package Data;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.util.Vector;
 
 import IOStream.GetStreamIn;
+import IOStream.ObjectStream;
 import IOStream.SendStreamOut;
+import Main.Controller;
 
 public class GetName
 {
@@ -15,6 +18,13 @@ public class GetName
 	public SendStreamOut sendStreamOut;
 	public String streamInString;
 	public String DeviceName;
+	public Vector<Payload> payloadList;
+	
+	public GetName(Controller controller) 
+	{
+		
+		this.payloadList = controller.payloadList;
+	}
 
 	public String getPName(Socket socket)
 	{
@@ -36,24 +46,35 @@ public class GetName
 			if(available > 0)
 			{
 				 streamInString = getStreamIn.StreamIn(socket);
-				 if(streamInString.startsWith("Pong"))
+				 System.out.println(streamInString);
+				 if(streamInString.startsWith("DeviceName"))
 				 {
-					 String tempName = streamInString.substring(4);
+					 String tempName = streamInString.substring(10);
 					 DeviceName = tempName.replaceAll("[\n\r]", "");
 					 System.out.print(DeviceName);
 					 deviceNameSet = false;
 				 }
+				 else if (streamInString.startsWith("Refresh"))
+				 {
+					 //Send block of stuff over
+					sendStreamOut.streamOut("Refresh");
+					System.out.println("Request Made for Payload names");
+					ObjectStream objectStream =  new ObjectStream(payloadList);
+					objectStream.sendObject(socket);
+				 }
+				 
 			}
 			Ping();
 		}
 		return DeviceName;
+		
 	}
 	
 	public void Ping()
 	{
 		if((System.currentTimeMillis() - lastPingTime) > 3000) //// Fix this
 		{
-			sendStreamOut.streamOut("Ping"); // Ping outgoing
+			sendStreamOut.streamOut("#"); // Ping outgoing
 			lastPingTime = System.currentTimeMillis();
 		}
 	}
