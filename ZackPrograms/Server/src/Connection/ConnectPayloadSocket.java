@@ -40,7 +40,7 @@ public class ConnectPayloadSocket extends Thread
 		{
 			Socket socket = serverInSocket.accept();
 			
-			GetName getName = new GetName();
+			GetName getName = new GetName(controller);
 			payload = new Payload();
 			payload.socket = socket;
 			payload.deviceName = getName.getPName(socket);
@@ -48,7 +48,7 @@ public class ConnectPayloadSocket extends Thread
 			
 			PayloadDataController payloadDataController = new PayloadDataController(socket);
 			payloadDataList.add(payloadDataController);
-			controller.UPDatePayloadList(payloadDataList);
+			controller.UPDatePayloadList(payloadDataList,payloadList);
 		}
 		catch (UnknownHostException e1) 
 		{

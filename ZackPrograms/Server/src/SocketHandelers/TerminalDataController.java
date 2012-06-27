@@ -12,10 +12,10 @@ import Main.Controller;
 public class TerminalDataController extends Thread
 {
 	private Socket socket;
+	private int available = 0;
 	public SendStreamOut streamOut;
 	public String streamInString;
 	public GetStreamIn getStreamIn;
-	private int available = 0;
 	public long lastReadTime = System.currentTimeMillis();
 	public long pingLastReadTime = System.currentTimeMillis();
 	public long lastPingTime = System.currentTimeMillis();

@@ -6,24 +6,29 @@ import java.net.Socket;
 import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Vector;
 import Data.IPData;
+import Data.Payload;
 import Events.CompleteConnectEvent;
 import Events.ICompleteConnectEventListener;
 import GUI.GetIP;
 import Main.DataController;
 import Parcers.IPAdder;
-public class Connect
+public class Connect extends Thread
 {
 	private String ip;
 	private int port;
 	private DataController dataController;
 	private SocketAddress socketAddress;
 	private int socketTimeout = 3000;
+	private boolean isConnected = false;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	public Socket socket;
 	public ArrayList<IPData> IpStorage;
 	public boolean terminalIsConnected = false;
 	public boolean payloadIsConnected = false;
+	public Vector<Payload> payloadList;
+	
 	
 	public Connect()
 	{
@@ -62,14 +67,25 @@ public class Connect
 		{	
 			new GetIP(IpStorage);
 		}
-		SendName sendName = new SendName();
-		if(sendName.sendName(socket))
+		
+		this.start();
+		
+		if(isConnected)
 		{
 			dataController = new DataController();
 			dataController.Initilize(socket, ip, port); //loop();
 		}
 	}	
-	
+	public void run()
+	{
+		
+		
+		SendName sendName = new SendName();
+		if(sendName.sendName(socket))
+		{
+			isConnected = true;
+		}
+	}
 	
 	
 
