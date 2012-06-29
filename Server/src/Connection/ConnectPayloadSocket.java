@@ -36,27 +36,36 @@ public class ConnectPayloadSocket extends Thread
 	
 	public void run() 
 	{
-		try 
+		while(true)
 		{
-			Socket socket = serverInSocket.accept();
-			
-			GetName getName = new GetName(controller);
-			payload = new Payload();
-			payload.socket = socket;
-			payload.deviceName = getName.getPName(socket);
-			payloadList.add(payload);
-			
-			PayloadDataController payloadDataController = new PayloadDataController(socket, controller, payload.deviceName);
-			payloadDataList.add(payloadDataController);
-			controller.UPDatePayloadList(payloadDataList,payloadList);
+			try 
+			{
+				Socket socket = serverInSocket.accept();
+				attachPayload(socket);
+				
+			}
+			catch (UnknownHostException e1) 
+			{
+				e1.printStackTrace();
+			} 
+			catch (IOException e1) 
+			{	
+				e1.printStackTrace();
+			}
 		}
-		catch (UnknownHostException e1) 
-		{
-			e1.printStackTrace();
-		}
-		catch (IOException e1) 
-		{
-			e1.printStackTrace();
-		}
+		
+	}	
+	
+	public void attachPayload(Socket socket)
+	{
+		GetName getName = new GetName(controller);
+		payload = new Payload();
+		payload.socket = socket;
+		payload.deviceName = getName.getPName(socket);
+		payloadList.add(payload);
+	
+		PayloadDataController payloadDataController = new PayloadDataController(socket, controller, payload.deviceName);
+		payloadDataList.add(payloadDataController);
+		controller.UPDatePayloadList(payloadDataList,payloadList);
 	}
 }

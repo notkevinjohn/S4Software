@@ -19,8 +19,8 @@ public class TerminalDataController extends Thread
 	public long lastReadTime = System.currentTimeMillis();
 	public long pingLastReadTime = System.currentTimeMillis();
 	public long lastPingTime = System.currentTimeMillis();
-	public long timeout = 1000;
-	public boolean terminalConnected = false;
+	public long timeout = 5000;
+	public boolean terminalConnected = true;
 	public String payloadConnectIP = "";
 	public boolean isPayloadIPSet = false;
 	public int payloadElementNubmer;
@@ -44,7 +44,7 @@ public class TerminalDataController extends Thread
 	{
 		
 		
-		while(true)
+		while(terminalConnected)
 		{
 			try 
 			{
@@ -74,12 +74,25 @@ public class TerminalDataController extends Thread
 				             {
 				                 ((ICompleteTerminalTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
 				             }
-				        } 	
-					  lastReadTime = System.currentTimeMillis();
+				        }
+				   	pingLastReadTime = System.currentTimeMillis();
 				  }
 			}
 			
 			Ping();
+			if(Disconnected())
+			{
+				System.out.print(payloadDeviceName);
+				System.out.println(" Disconected!!!");
+				terminalConnected = false;
+			}
+		}
+		
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -90,7 +103,9 @@ public class TerminalDataController extends Thread
 	
 	public boolean Disconnected()
 	{
-		return (System.currentTimeMillis() - lastReadTime) > timeout;
+
+		return (System.currentTimeMillis() - pingLastReadTime) > timeout;
+
 	}
 		
 	public void Ping()

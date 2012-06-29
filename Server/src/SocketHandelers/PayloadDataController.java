@@ -18,10 +18,10 @@ public class PayloadDataController extends Thread
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
-	private long lastReadTime = System.currentTimeMillis();
-	private long timeout = 1000;
+	private long timeout = 5000;
 	private Controller controller;
 	private String deviceName;
+	private boolean payloadConnected = true;
 	
 	public PayloadDataController(Socket socket, Controller controller, String deviceName)
 	{
@@ -38,7 +38,7 @@ public class PayloadDataController extends Thread
 	
 	public void run() 
 	{
-		while(true)
+		while(payloadConnected)
 		{
 			try 
 			{
@@ -54,6 +54,8 @@ public class PayloadDataController extends Thread
 				  streamInString = getStreamIn.StreamIn(socket);
 				  if(!streamInString.startsWith("Pong"))  // Pong incoming
 				  {
+					  pingLastReadTime = System.currentTimeMillis();
+					  
 					  if(controller.terminalDataList != null)
 					  {
 						  for(int j = 0; j < controller.terminalDataList.size(); j++)
@@ -72,9 +74,7 @@ public class PayloadDataController extends Thread
 							  }
 				   		
 					  }
-				   		
 					  
-					  lastReadTime = System.currentTimeMillis();
 					  }
 					  else
 					  {
@@ -83,8 +83,20 @@ public class PayloadDataController extends Thread
 				  }
 			}
 			Ping();
-			
+			if(Disconnected())
+			{
+				System.out.print(deviceName);
+				System.out.println(" Disconnected!!!");
+				payloadConnected = false;
+			}
 		
+		}
+		
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -96,7 +108,7 @@ public class PayloadDataController extends Thread
 	
 	public boolean Disconnected()
 	{
-		return (System.currentTimeMillis() - lastReadTime) > timeout;
+		return (System.currentTimeMillis() - pingLastReadTime) > timeout;
 	}
 		
 	public void Ping()

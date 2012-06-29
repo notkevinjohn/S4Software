@@ -19,7 +19,6 @@ public class Controller extends Thread
 	public Vector<PayloadDataController> payloadDataList;
 	public Vector<TerminalDataController> terminalDataList;
 	public Vector<Payload> payloadList;
-	//public PayloadListVector payloadListVector;
 	public TerminalPayloadList terminalPayloadList;
 	public Vector<TerminalPayloadList> payloadListVector;
 	
@@ -35,22 +34,15 @@ public class Controller extends Thread
 		connectTerminalSocket.start();
 		connectTermToPayload.connectTermToPayload(this,connectPayloadSocket,connectTerminalSocket);
 		
-		//payloadListVector = new PayloadListVector();
 		terminalPayloadList = new TerminalPayloadList();
 		payloadListVector = new Vector<TerminalPayloadList>();
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	public void UpDateTerminalList(Vector<TerminalDataController> terminalDataList)
 	{
 		this.terminalDataList = terminalDataList;
 	}
+	
 	public void UPDatePayloadList(Vector<PayloadDataController> payloadDataList, Vector<Payload> payloadList)
 	{
 		this.payloadDataList = payloadDataList;
