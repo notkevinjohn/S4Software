@@ -1,8 +1,7 @@
 package Componets.Connection;
 
-import java.awt.CheckboxGroup;
-
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 
 import Socket.SendName;
 
@@ -21,11 +20,11 @@ public class DeviceConnectButton extends JButton
 
 	}
 	
-	public void setActionListener (SendName sendName, CheckboxGroup checkBoxGroup)
+	public void setActionListener (SendName sendName,  JComboBox<String> payloadListComboBox)
 	{
 		if(!actionListenerSet)
 		{
-			this.addActionListener(new DeviceConnectButtonActionListener(sendName ,checkBoxGroup));
+			this.addActionListener(new DeviceConnectButtonActionListener(sendName ,payloadListComboBox));
 			actionListenerSet = true;
 		}
 	}

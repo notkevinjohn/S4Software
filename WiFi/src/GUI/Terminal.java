@@ -16,6 +16,8 @@ import Componets.TerminalText;
 import java.awt.Color;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class Terminal 
 {
@@ -144,6 +146,28 @@ public class Terminal
 			}
 		});
 		
+		frame.addWindowListener(new WindowListener() 
+		{
+			@Override
+			public void windowActivated(WindowEvent arg0) {}
+			@Override
+			public void windowClosed(WindowEvent arg0)
+			{
+			}
+			@Override
+			public void windowDeactivated(WindowEvent arg0) {}
+			@Override
+			public void windowDeiconified(WindowEvent arg0) {}
+			@Override
+			public void windowIconified(WindowEvent arg0) {}
+			@Override
+			public void windowOpened(WindowEvent arg0) {}
+			@Override
+			public void windowClosing(WindowEvent e) 
+			{
+				System.exit(0);
+			}
+		});
 		
 }
 
