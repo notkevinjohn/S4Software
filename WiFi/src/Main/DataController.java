@@ -36,17 +36,18 @@ public class DataController extends Thread
 	public WiFiWriter wiFiWriter;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	public String pongString = "Pong"; // need to dynamically change if connected to server or payload!!!
-	
-	public void Initilize(Socket socket, String ip, int port)
+	public String deviceName;
+	public void Initilize(Socket socket, String ip, int port, String deviceName)
 	{
 		this.socket = socket;
 		this.ip = ip;
 		this.port = port;
+		this.deviceName = deviceName;
 		
 		StyleConstants.setForeground(blue, Color.BLUE);
 		StyleConstants.setForeground(green, new Color(0,64,0));
 		
-		terminal = new Terminal();
+		terminal = new Terminal(deviceName);
 		wiFiWriter = new WiFiWriter();
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();

@@ -48,7 +48,7 @@ public class WiFiWriter
 	 private void createDirectoryIfNeeded()
 	  {
 		  directory = new File(directoryLocation);
-
+		  
 		  if (!directory.exists())
 		  {
 			  directory.mkdir();

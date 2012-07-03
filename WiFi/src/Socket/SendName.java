@@ -15,7 +15,7 @@ public class SendName
 	private int available = 0;
 	public String streamInString;
 	public GetStreamIn getStreamIn;
-	public String DeviceName;
+	public String deviceName;
 	private boolean deviceNameSet = true;
 	private GetObjectStream getObjectStream;
 	public Vector<TerminalPayloadList> payloadListVector;
@@ -68,6 +68,7 @@ public class SendName
 	public void TXName(String sendString)
 	{
 		 sendStreamOut.streamOut(sendString);
+		 deviceName = sendString.substring(10);
 	}
 }
 

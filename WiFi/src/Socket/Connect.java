@@ -65,8 +65,10 @@ public class Connect extends Thread
 		{	
 			new GetIP(IpStorage);
 		}
-		
-		this.start();
+		if(socket.isConnected())
+		{
+			this.start();
+		}
 	}	
 	public void run()
 	{
@@ -75,8 +77,9 @@ public class Connect extends Thread
 		SendName sendName = new SendName();
 		if(sendName.sendName(socket))
 		{
+			String deviceName = sendName.deviceName;
 			dataController = new DataController();
-			dataController.Initilize(socket, ip, port); 
+			dataController.Initilize(socket, ip, port,deviceName); 
 		}
 	}
 	

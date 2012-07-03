@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import net.miginfocom.swing.MigLayout;
 import Componets.Connection.AddIPButton;
 import Componets.Connection.DelIPButton;
@@ -45,6 +48,15 @@ public class EditIPSrc
 	{
 		this.getIP = getIP;
 		this.TCPcomboBox = TCPcomboBox;
+		try 
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException e) { }
+	    catch (ClassNotFoundException e) {}
+	    catch (InstantiationException e) {}
+	    catch (IllegalAccessException e) {}
+		
 		editIPSrc(IPStorage);
 	}
 

@@ -4,6 +4,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyledDocument;
@@ -32,16 +34,26 @@ public class Terminal
 	public String textSend;
 	public StyledDocument doc;
 	public SendLineTextField sendLine;
-	
-	public Terminal()
+	public String deviceName;
+	public Terminal(String deviceName)
 	{
+		this.deviceName = deviceName;
 		EventQueue.invokeLater(new Runnable() 
 		{
 			public void run() 
 			{
 				try 
 				{
-					 terminal();
+					try 
+					{
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				    } 
+				    catch (UnsupportedLookAndFeelException e) { }
+				    catch (ClassNotFoundException e) {}
+				    catch (InstantiationException e) {}
+				    catch (IllegalAccessException e) {}
+					
+					terminal();
 				} 
 				catch (Exception e)
 				{
@@ -53,7 +65,8 @@ public class Terminal
 
 	public void terminal() 
 	{
-		frame = new JFrame("Payload Terminal");
+		String terminalName = "Terminal Payload -- " + deviceName;
+		frame = new JFrame(terminalName);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 640, 630);
@@ -64,6 +77,7 @@ public class Terminal
 		frame.setMinimumSize(new Dimension(400,300));
 		
 		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		panel.setSize(622,592);
 		panel.setLocation(0,0);
 		contentPane.add(panel);
@@ -86,6 +100,7 @@ public class Terminal
 		
 
 		chckbxAutoscroll = new AutoscrollCheckBox(terminalText);
+		chckbxAutoscroll.setBackground(Color.WHITE);
 		chckbxAutoscroll.setSelected(true);
 		chckbxAutoscroll.setSize(92,23);
 		chckbxAutoscroll.setLocation(530,556);

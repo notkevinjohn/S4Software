@@ -3,6 +3,7 @@ package Componets.Connection;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 
+import GUI.SendConnectionName;
 import Socket.SendName;
 
 public class DeviceConnectButton extends JButton
@@ -20,11 +21,11 @@ public class DeviceConnectButton extends JButton
 
 	}
 	
-	public void setActionListener (SendName sendName,  JComboBox<String> payloadListComboBox)
+	public void setActionListener (SendName sendName,  JComboBox<String> payloadListComboBox, SendConnectionName sendConnectionName)
 	{
 		if(!actionListenerSet)
 		{
-			this.addActionListener(new DeviceConnectButtonActionListener(sendName ,payloadListComboBox));
+			this.addActionListener(new DeviceConnectButtonActionListener(sendName ,payloadListComboBox,sendConnectionName));
 			actionListenerSet = true;
 		}
 	}

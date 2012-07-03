@@ -6,6 +6,8 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import java.awt.CheckboxGroup;
 import Socket.SendName;
@@ -32,6 +34,15 @@ public class SendConnectionName extends JFrame
 	
 	public SendConnectionName(SendName sendName) 
 	{
+		try 
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException e) { }
+	    catch (ClassNotFoundException e) {}
+	    catch (InstantiationException e) {}
+	    catch (IllegalAccessException e) {}
+		
 		this.sendName = sendName;
 		frame = new JFrame("Select Payload");
 		frame.setVisible(true);
@@ -94,7 +105,7 @@ public class SendConnectionName extends JFrame
 				String name = payloadListVector.get(i).deviceName;
 				payloadListComboBox.addItem(name);
 			}
-			deviceConnectButton.setActionListener(sendName, payloadListComboBox);	
+			deviceConnectButton.setActionListener(sendName, payloadListComboBox,this);	
 		}
 	}
 	

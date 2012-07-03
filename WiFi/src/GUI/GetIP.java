@@ -3,6 +3,8 @@ package GUI;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.border.EmptyBorder;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -28,6 +30,15 @@ public class GetIP extends JFrame
 	public GetIP(ArrayList<IPData> _IpStorage) 
 	{
 		IPStorage = _IpStorage;
+		try 
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException e) { }
+	    catch (ClassNotFoundException e) {}
+	    catch (InstantiationException e) {}
+	    catch (IllegalAccessException e) {}
+		
 		setIP();
 	}
 	
