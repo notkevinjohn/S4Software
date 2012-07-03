@@ -27,7 +27,7 @@ public class ConnectTerminalSocket extends Thread
 		this.controller = controller;
 		this.connectTermToPayload = connectTermToPayload;
 		terminalDataList = new Vector<TerminalDataController>();
-		terminalList = new Vector<Terminal>(); // this may have to move to allow mulitple terminal connections
+		terminalList = new Vector<Terminal>();
 		
 		try 
 		{

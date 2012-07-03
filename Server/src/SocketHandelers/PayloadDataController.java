@@ -81,6 +81,7 @@ public class PayloadDataController extends Thread
 						  pingLastReadTime = System.currentTimeMillis();
 					  }
 				  }
+				  
 			}
 			Ping();
 			if(Disconnected())
@@ -92,12 +93,7 @@ public class PayloadDataController extends Thread
 		
 		}
 		
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 	public void StreamOut(String sendText)

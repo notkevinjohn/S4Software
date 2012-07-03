@@ -6,5 +6,4 @@ public class Main
 	{
 		new Controller();
 	}
-
 }

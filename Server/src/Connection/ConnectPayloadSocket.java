@@ -42,7 +42,6 @@ public class ConnectPayloadSocket extends Thread
 			{
 				Socket socket = serverInSocket.accept();
 				attachPayload(socket);
-				
 			}
 			catch (UnknownHostException e1) 
 			{

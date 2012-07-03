@@ -49,27 +49,21 @@ public class GetName
 				 System.out.println(streamInString);
 				 if(streamInString.startsWith("DeviceName"))
 				 {
-					
 					 String tempName = streamInString.substring(10);
 					 DeviceName = tempName.replaceAll("[\n\r]", "");
-					 System.out.print(DeviceName);
 					 deviceNameSet = false;
-					 
+					 sendStreamOut.streamOut("@");
 				 }
 				 else if (streamInString.startsWith("Refresh"))
 				 {
-					 //Send block of stuff over
 					sendStreamOut.streamOut("Refresh");
-					System.out.println("Request Made for Payload names");
 					ObjectStream objectStream =  new ObjectStream(payloadListVector);
 					objectStream.sendObject(socket);
 				 }
-				 
 			}
 			Ping();
 		}
 		return DeviceName;
-		
 	}
 	
 	public void Ping()
