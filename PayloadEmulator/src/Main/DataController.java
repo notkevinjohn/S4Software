@@ -2,7 +2,6 @@ package Main;
 
 import java.awt.Color;
 import java.net.Socket;
-import javax.swing.SwingUtilities;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import Events.CompleteSendEventListener;
@@ -40,7 +39,6 @@ public class DataController extends Thread
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
 		
-		
 		TextSendController();
 		this.start();
 	}
@@ -77,18 +75,9 @@ public class DataController extends Thread
 		}
 	}
 	
-	public void updateText(final String _streamInString, final SimpleAttributeSet type) {
-		  SwingUtilities.invokeLater(new Runnable() {
-		    public void run() {
-//		    	 terminal.updateText(_streamInString,type);
-//		    	 wiFiWriter.recieveText(_streamInString);
-		    }
-		  });
-		}
-	
 	public  void TextSendController()
 	{
-		addCompleteSendEventListener(new CompleteSendEventListener(this, streamOut));
+		addCompleteSendEventListener(new CompleteSendEventListener(streamOut));
 	}
 	
 	

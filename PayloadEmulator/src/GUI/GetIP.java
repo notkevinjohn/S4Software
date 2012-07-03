@@ -1,37 +1,43 @@
 package GUI;
 
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import java.awt.Color;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.net.Socket;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.border.EmptyBorder;
 import Componets.Connection.ConnectButton;
 import Componets.Connection.EditIPButton;
 import Data.IPData;
-import javax.swing.JLabel;
 
 
 public class GetIP extends JFrame 
 {
 	private static final long serialVersionUID = -44419473300948763L;
 	private EditIPButton btnEdit;
-	public JFrame frame;
 	private ConnectButton btnConnect;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
-	public String ip;
-	public int port;
-	public String receve;
-	public Socket socket;
+	public JFrame frame;
 	public ArrayList<IPData> IPStorage;
 	public JComboBox<String> TCPcomboBox;
 	public JComboBox<String> SimComboBox;
 	
 	public GetIP(ArrayList<IPData> _IpStorage) 
 	{
+		try 
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException e) { }
+	    catch (ClassNotFoundException e) {}
+	    catch (InstantiationException e) {}
+	    catch (IllegalAccessException e) {}
+		
 		IPStorage = _IpStorage;
 		setIP();
 	}
@@ -46,6 +52,7 @@ public class GetIP extends JFrame
 		frame.setBounds(100, 100, 465, 95);
 		
 		JPanel contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -53,6 +60,7 @@ public class GetIP extends JFrame
 		getIPcomboBox(IPStorage);
 		
 		SimComboBox = new JComboBox<String>();
+		SimComboBox.setBackground(Color.WHITE);
 		SimComboBox.setBounds(223, 34, 121, 20);
 		contentPane.add(SimComboBox);
 		SimComboBox.addItem("Name and Time");
@@ -77,7 +85,7 @@ public class GetIP extends JFrame
 		JLabel lblSimulationType = new JLabel("Simulation Type");
 		lblSimulationType.setBounds(223, 9, 121, 14);
 		contentPane.add(lblSimulationType);
-		
+	
 		frame.setContentPane(contentPane);
 		
 		frame.addWindowListener(new WindowListener() // Handle differently
@@ -110,6 +118,7 @@ public class GetIP extends JFrame
 		IPStorage = _IPStorage;
 		
 		TCPcomboBox = new JComboBox<String>();
+		TCPcomboBox.setBackground(Color.WHITE);
 		TCPcomboBox.setBounds(10, 34, 129, 20);
 		
 		for(int i = 0; i < IPStorage.size(); i++)

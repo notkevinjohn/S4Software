@@ -14,7 +14,6 @@ public class HandShake
 	private long lastReadTime = System.currentTimeMillis();;
 	private boolean boolStream = false;
 	
-
 	public HandShake(SendStreamOut sendStreamOut,GetStreamIn getStreamIn,Socket socket, String deviceName)
 	{
 		this.sendStreamOut = sendStreamOut;
@@ -32,26 +31,23 @@ public class HandShake
 		System.out.print(tempString);
 		lastReadTime = System.currentTimeMillis();
 		}
-	
-	try 
-	{
-		available = socket.getInputStream().available();
-	} 
-	catch (IOException e) 
-	{
-		e.printStackTrace();
-	}
-	
-	if(available > 0)
-	{
-		  streamInString = getStreamIn.StreamIn(socket);
-		  
-		  if(!streamInString.equals("@"))
-		  {
-			  boolStream = true;
-		  }
-		  
-	}
+		try 
+		{
+			available = socket.getInputStream().available();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
+		}
+		if(available > 0)
+		{
+			  streamInString = getStreamIn.StreamIn(socket);
+			  if(streamInString.contains("@"))
+			  {
+				  boolStream = true;
+			  }
+			  
+		}
 	return boolStream;
 	}
 }

@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import net.miginfocom.swing.MigLayout;
 import Componets.Connection.AddIPButton;
 import Componets.Connection.DelIPButton;
@@ -21,7 +24,6 @@ import Data.IPData;
 
 public class EditIPSrc
 {
-	public JFrame frame;
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
 	private JPanel delPanel;
@@ -38,6 +40,7 @@ public class EditIPSrc
 	private DelIPButton btnDelSelected;
 	private GetIP getIP;
 	private JComboBox<String> TCPcomboBox;
+	public JFrame frame;
 	public ArrayList<JTextField> ipArray = new ArrayList<JTextField>();
 	public ArrayList<JCheckBox> deleteArray = new ArrayList<JCheckBox>();
 	
@@ -45,21 +48,31 @@ public class EditIPSrc
 	{
 		this.getIP = getIP;
 		this.TCPcomboBox = TCPcomboBox;
+		try 
+		{
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+	    } 
+	    catch (UnsupportedLookAndFeelException e) { }
+	    catch (ClassNotFoundException e) {}
+	    catch (InstantiationException e) {}
+	    catch (IllegalAccessException e) {}
+		
 		editIPSrc(IPStorage);
 	}
 
 	public void editIPSrc(ArrayList<IPData> IPStorage) 
 	{
-		
 		frame = new JFrame("Edit Stored IP Addresses");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 471, 333);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		frame.setContentPane(contentPane);
 		
 		panel = new JPanel();
+		panel.setBackground(Color.WHITE);
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 		
@@ -115,6 +128,7 @@ public class EditIPSrc
 	public void redrawIP(ArrayList<IPData> IPStorage)
 	{
 		delPanel = new JPanel();
+		delPanel.setBackground(Color.WHITE);
 		scrollPane.setViewportView(delPanel);
 		delPanel.setLayout(null);
 		delPanel.setLayout(new MigLayout("", "[107.00px][102.00][47.00][20]", "[]"));
@@ -124,8 +138,7 @@ public class EditIPSrc
 		
 		ipArray.clear();
 		deleteArray.clear();
-		
-		
+			
 		for(int i =0; i< lengthOfIP; i++)
 		{
 			String name =IPStorage.get(i).name;

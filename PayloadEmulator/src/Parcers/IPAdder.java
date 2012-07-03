@@ -21,14 +21,13 @@ public class IPAdder {
 	{	
 		 List<String> records; 
 		 createDirectoryIfNeeded();
-   	  try
+   	     try
          {
-   		  	
-             records = readFileAsListOfStrings(filePath);        
-             readStringAsListOfElements(records);              
+              records = readFileAsListOfStrings(filePath);        
+              readStringAsListOfElements(records);              
          }
          catch (Exception error){}
-   	  return IpStorage;
+   	     return IpStorage;
 	}
 	
 	 public  List<String> readFileAsListOfStrings(String filePath) throws Exception
@@ -36,13 +35,12 @@ public class IPAdder {
          List<String> records = new ArrayList<String>(); 
          BufferedReader reader = new BufferedReader(new FileReader(filePath));    
          String line;
-         
+
          while ((line = reader.readLine()) != null)       
          {
            records.add(line);								
          }
          reader.close();  
-        
          return records;          
      }
 	 
@@ -56,7 +54,7 @@ public class IPAdder {
     		  String currentRecord = records.get(i);		    		  
     		  element = new ArrayList<String>();								  // initiate element
     		  String value = "";												  // initiate value
-	    		 
+	 
 	    	  for(int j = 0; j < currentRecord.length(); j++)					  // run through a charater at a time until the end of currentRecord
 	    	  {																	  
 	    		 char ch = currentRecord.charAt(j);								  // define the ch as the char at the jth position of currentRecord
@@ -96,7 +94,6 @@ public class IPAdder {
     	    	data.add(ipData);
     	    }
     	    IpStorage = data;
-    	    
       }
 	  
 	  private void createDirectoryIfNeeded()
@@ -106,7 +103,6 @@ public class IPAdder {
 		  if (!directory.exists())
 		  {
 			  directory.mkdir();
-
 		      file = new File(filePath);
 		      if (!file.exists())
 		 	  {
@@ -127,13 +123,13 @@ public class IPAdder {
 		    		  try 
 		    		  {
 		    			  	file.createNewFile();
-		    		  } catch (IOException e) 
+		    		  } 
+		    		  catch (IOException e) 
 		    		  {
 		    			  e.printStackTrace();
 		    		  }
 		    	  }
 		      }
 		  }
-		  
 	  }
 }

@@ -1,6 +1,7 @@
 package Parcers;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -11,34 +12,34 @@ import Data.IPData;
 public class RockSimParcer 
 {
 	private String filePath = "RockSim/RockSim.csv";
+	private File directory;
+	private String directoryLocation = "RockSim";
 	public List<String> records;
 	public ArrayList<IPData> IpStorage;
 	public double priorTime = 0;
 	public double time = 0;
 	public ArrayList<String> gpsData;
 	
-	public RockSimParcer()
-	{
-	}
 	public ArrayList<String> parcer()
 	{
+		 createDirectoryIfNeeded();
 		 try 
 		 {
 			records = readFileAsListOfStrings(filePath);
 			readStringAsListOfElements(records);
 			System.out.println("done");
-		} 
+		 } 
 		 catch (Exception e) 
-		{
+		 {
 			e.printStackTrace();
-		}    
+		 }    
 		 return gpsData;
 	}
 	
 	 public  List<String> readFileAsListOfStrings(String filename) throws Exception
      {
          List<String> records = new ArrayList<String>(); 
-         BufferedReader reader = new BufferedReader(new FileReader(filename));    
+         BufferedReader reader = new BufferedReader(new FileReader(filename)); 
          String line;
          
          while ((line = reader.readLine()) != null)       
@@ -115,12 +116,28 @@ public class RockSimParcer
 		  
 		  for(int i = 1; i < elements.size(); i++)
 		  {
-			  String gpsString = "$GPGGA," + tf.format(100000.000+Double.parseDouble(elements.get(i).get(0))) + ","+lf.format(3751.2094 + 1/(1855*3.28)*Double.parseDouble(elements.get(i).get(3))) +",N,12229.5760,W,1,06,1.3,"+af.format(Double.parseDouble(elements.get(i).get(2))*.3048)+",M,-25.1,M,,0000*62";
+			  String gpsString = "$GPGGA," + tf.format(100000.000+Double.parseDouble(elements.get(i).get(0))) + ","+lf.format(3820.3824 + 1/(1855*3.28)*Double.parseDouble(elements.get(i).get(3))) +",N,12240.6673,W,1,06,1.3,"+af.format(43.58 + Double.parseDouble(elements.get(i).get(2))*.3048)+",M,-25.1,M,,0000*62";
 			  gpsData.add(gpsString);
 			  
 			  String sensorString = "@,&," + Double.parseDouble(elements.get(i).get(1));
 			  gpsData.add(sensorString);
 		  }
+	  }
+	  
+	  private void createDirectoryIfNeeded()
+	  {
+		  directory = new File(directoryLocation);
+
+		  if (!directory.exists())
+		  {
+			  directory.mkdir();
+		  }
+		 File file = new File(filePath);
+		  if (!file.exists())
+		  {
+			  System.out.println("FileNotFound"); // bring up window!!!
+		  }
+		  
 	  }
 }
 

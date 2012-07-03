@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import GUI.RecieveWindow;
 import Parcers.RockSimParcer;
 
 public class RXTXhandeler 
@@ -16,9 +17,11 @@ public class RXTXhandeler
 	private int available;
 	private long lastReadTime = System.currentTimeMillis();
 	private long start = System.currentTimeMillis();
+	private RecieveWindow reciveWindow;
 	public ArrayList<String> gpsData;
 	public int gpsDataLength;
 	public int gpsDataIndex = 1;
+	
 	
 	public RXTXhandeler(SendStreamOut sendStreamOut,GetStreamIn getStreamIn,Socket socket, String deviceName)
 	{
@@ -26,6 +29,7 @@ public class RXTXhandeler
 		this.getStreamIn = getStreamIn;
 		this.socket = socket;
 		this.deviceName = deviceName;
+		reciveWindow = new RecieveWindow();
 	}
 	
 	public void NameTimeRXTX()
@@ -45,7 +49,7 @@ public class RXTXhandeler
 			  
 			  if(!streamInString.equals("#"))
 			  {
-				  
+				  reciveWindow.updateText(streamInString);
 			  }
 			  else
 			  {
@@ -54,9 +58,9 @@ public class RXTXhandeler
 		}
 		if((System.currentTimeMillis() - lastReadTime) > 2000)
 		{
-		String tempString = deviceName + ": " + Long.toString((System.currentTimeMillis()-start)/1000);
-		sendStreamOut.streamOut(tempString);
-		lastReadTime = System.currentTimeMillis();
+			String tempString = deviceName + ": " + Long.toString((System.currentTimeMillis()-start)/1000);
+			sendStreamOut.streamOut(tempString);
+			lastReadTime = System.currentTimeMillis();
 		}
 	}
 	public void getRockSimData()
@@ -67,7 +71,6 @@ public class RXTXhandeler
 	}
 	public void RockSimRXTX()
 	{
-		
 		try 
 		{
 			available = socket.getInputStream().available();
@@ -83,7 +86,7 @@ public class RXTXhandeler
 			  
 			  if(!streamInString.equals("#"))
 			  {
-				  
+				  reciveWindow.updateText(streamInString);
 			  }
 			  else
 			  {

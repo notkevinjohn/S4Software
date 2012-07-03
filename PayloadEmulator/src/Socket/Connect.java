@@ -65,9 +65,11 @@ public class Connect extends Thread
 		{	
 			new GetIP(IpStorage);
 		}
-		
+		if(socket.isConnected())
+		{
 		dataController = new DataController();
 		dataController.Initilize(socket, deviceName,type);
+		}
 	}
 	
 

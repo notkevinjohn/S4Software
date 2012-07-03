@@ -8,7 +8,6 @@ import Data.IPData;
 
 public class FileUpdater 
 {
-	
 	public ArrayList<IPData> IPStorage;
 	public String fileLocation = "IP/IPCONFIG.txt";
 	
@@ -16,7 +15,8 @@ public class FileUpdater
 	{
 		IPStorage = _IPStorage;
 		FileWriter fstream;
-		try {
+		try 
+		{
 			fstream = new FileWriter(fileLocation);
 			BufferedWriter IPConfig = new BufferedWriter(fstream);
 			
@@ -29,9 +29,9 @@ public class FileUpdater
 				IPConfig.newLine();
 			}
 			IPConfig.close();
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		} 
+		catch (IOException e) 
+		{
 			e.printStackTrace();
 		}
 		  

@@ -21,6 +21,7 @@ public class ConnectActionListener implements ActionListener
 	private int port;
 	private JComboBox<String> TCPcomboBox;
 	private JComboBox<String> simcomboBox;
+	private JFrame frame;
 	public static EventListenerList listenerList = new EventListenerList();
 	
 	public ConnectActionListener (JButton connectButton, ArrayList<IPData> IPStorage, JFrame frame, JComboBox<String> TCPcomboBox, JComboBox<String> simcomboBox)
@@ -28,6 +29,7 @@ public class ConnectActionListener implements ActionListener
 		this.IPStorage = IPStorage;
 		this.TCPcomboBox = TCPcomboBox;
 		this.simcomboBox =simcomboBox;
+		this.frame = frame;
 	}
 	
 	@Override
@@ -37,9 +39,7 @@ public class ConnectActionListener implements ActionListener
 		ip = IPStorage.get(TCPcomboBox.getSelectedIndex()).ip;
 		String name = IPStorage.get(TCPcomboBox.getSelectedIndex()).name;
 		String type = simcomboBox.getSelectedItem().toString();
-		//frame.setVisible(false);
-		System.out.println(ip);
-		System.out.println(port);
+		frame.setVisible(false);
 		
 		CompleteConnectEvent complete = new CompleteConnectEvent(this,ip,port,name,type);
 		Object[] listeners = Connect.listenerList.getListenerList(); 
