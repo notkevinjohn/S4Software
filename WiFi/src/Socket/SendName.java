@@ -56,11 +56,10 @@ public class SendName
 				 }
 				 else if(streamInString.equals("Refresh"))
 				 { 
-					
 					 sendConnectionName.refreshPayloadList(getObjectStream.getObject(socket));
-					
 				 }
 			}
+		//	try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */} This makes it mess up need to find out why
 		}
 		return true;
 	}
@@ -68,7 +67,7 @@ public class SendName
 	public void TXName(String sendString)
 	{
 		 sendStreamOut.streamOut(sendString);
-		 deviceName = sendString.substring(10);
+		// deviceName = sendString.substring(10); this makes it mess up need to find out why
 	}
 }
 

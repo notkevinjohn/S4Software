@@ -112,6 +112,7 @@ public class DataController extends Thread
 				 getStreamIn.StreamIn(socket);
 				 lastReadTime = System.currentTimeMillis();
 			}
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}
 	}
 	

@@ -182,8 +182,7 @@ public class Terminal
 			{
 				System.exit(0);
 			}
-		});
-		
+		});	
 }
 
 	public void updateText(final String updateString, SimpleAttributeSet type)
