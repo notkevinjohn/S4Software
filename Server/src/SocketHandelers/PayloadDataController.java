@@ -90,7 +90,8 @@ public class PayloadDataController extends Thread
 				System.out.println(" Disconnected!!!");
 				payloadConnected = false;
 			}
-		
+			
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}
 		
 		
@@ -99,7 +100,7 @@ public class PayloadDataController extends Thread
 	public void StreamOut(String sendText)
 	{
 		streamOut.streamOut(sendText);
-		streamOut.streamOut("!"); /// find why this needs to be here
+		//streamOut.streamOut("!"); /// find why this needs to be here
 	}
 	
 	public boolean Disconnected()

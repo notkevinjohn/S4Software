@@ -62,6 +62,7 @@ public class GetName
 				 }
 			}
 			Ping();
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}
 		return DeviceName;
 	}

@@ -86,7 +86,8 @@ public class TerminalDataController extends Thread
 				System.out.println(" Disconected!!!");
 				terminalConnected = false;
 			}
-
+		
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}
 	}
 	

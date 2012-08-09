@@ -11,6 +11,7 @@ import Events.CompletePayloadTXEventListener;
 import Events.CompleteTerminalTXEventListener;
 import Events.ICompletePayloadTXEventListener;
 import Events.ICompleteTerminalTXEventListener;
+import GUI.GUI;
 import SocketHandelers.PayloadDataController;
 import SocketHandelers.TerminalDataController;
 
@@ -26,6 +27,7 @@ public class Controller extends Thread
 	
 	public Controller()
 	{	
+		new GUI();
 		this.start();
 		ConnectTermToPayload connectTermToPayload = new ConnectTermToPayload();
 		ConnectPayloadSocket connectPayloadSocket = new ConnectPayloadSocket(this);

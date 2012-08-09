@@ -77,6 +77,8 @@ public class ConnectTerminalSocket extends Thread
 			{	
 				e1.printStackTrace();
 			}
+			
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}
 	}
 }
