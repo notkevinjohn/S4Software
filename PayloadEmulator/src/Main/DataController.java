@@ -59,6 +59,7 @@ public class DataController extends Thread
 			while(isHandShakeComplete)
 			{
 				rxtxhandeler.NameTimeRXTX();
+				try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 			}
 		}
 		else if (type.equals("RockSim"))
@@ -67,6 +68,7 @@ public class DataController extends Thread
 			while(isHandShakeComplete)
 			{
 				rxtxhandeler.RockSimRXTX();
+				try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 			}
 		}
 		else

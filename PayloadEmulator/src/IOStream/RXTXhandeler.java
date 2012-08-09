@@ -56,9 +56,9 @@ public class RXTXhandeler
 				  sendStreamOut.streamOut("Pong");
 			  }
 		}
-		if((System.currentTimeMillis() - lastReadTime) > 2000)
+		if((System.currentTimeMillis() - lastReadTime) > 1000)
 		{
-			String tempString = deviceName + ": " + Long.toString((System.currentTimeMillis()-start)/1000);
+			String tempString = deviceName + ": " + Long.toString((System.currentTimeMillis()-start)/1000) + "\r\n";
 			sendStreamOut.streamOut(tempString);
 			lastReadTime = System.currentTimeMillis();
 		}
@@ -97,7 +97,7 @@ public class RXTXhandeler
 		{
 			if(gpsDataIndex < gpsDataLength )
 			{
-				String tempString = gpsData.get(gpsDataIndex)+ "\r\n";
+				String tempString = gpsData.get(gpsDataIndex) + "\r\n";
 				sendStreamOut.streamOut(tempString);
 				lastReadTime = System.currentTimeMillis();
 				gpsDataIndex++;

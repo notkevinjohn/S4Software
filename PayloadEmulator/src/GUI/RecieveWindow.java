@@ -69,6 +69,9 @@ public class RecieveWindow
 	textArea.setEditable(false);
 	textArea.setLineWrap(true);
 	
+	
+	
+	
 	frame.addWindowListener(new WindowListener() 
 	{
 		@Override
@@ -98,6 +101,7 @@ public class RecieveWindow
 		try
 		{
 			textArea.append(updateString);
+			textArea.setCaretPosition(textArea.getDocument().getLength());
 		}
 		catch(Exception e) 
 		{ 
