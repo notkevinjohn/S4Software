@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Copy source folder &apos;miglayout15-swing.jar&apos; to &apos;PayloadEmulator&apos;&#x0D;&#x0A;- Original project: &apos;WiFi&apos;&#x0D;&#x0A;- Destination element: &apos;PayloadEmulator&apos;&#x0D;&#x0A;- Original element: &apos;WiFi/miglayout15-swing.jar&apos;" description="Copy source folder" element1="/miglayout15-swing.jar" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="1" stamp="1344876507882" target="/PayloadEmulator" version="1.0"/>
-</session>
