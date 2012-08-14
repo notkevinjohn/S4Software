@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\Users\Kevin\Documents\GitHub\S4Software\PayloadEmulator" key="org.eclipse.jdt.ui.lastextjar"/>
+	<section name="OptionalMessageDialog.hide.">
+		<item value="true" key="RunnableJar.export.ipwarning"/>
+	</section>
+	<section name="completion_proposal_size">
+	</section>
+	<section name="JavaElementSearchActions">
+	</section>
+	<section name="BuildPathsPropertyPage">
+		<item value="2" key="pageIndex"/>
+	</section>
+	<section name="FatJarPackageWizard">
+		<item value="C:\Users\Kevin\Desktop\TerminalV3.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="Main (1) - WiFi" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="C:\Users\Kevin\Documents\GitHub\S4Software" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
+		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
+		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
+		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\Users\Kevin\Desktop\TerminalV3.jar"/>
+			<item value="C:\Users\Kevin\Desktop\ServerV3.jar"/>
+			<item value="C:\Users\Kevin\Desktop\PayloadEmulatorV3.jar"/>
+		</list>
+		<list key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION_HISTORY">
+			<item value="C:\Users\Kevin\Documents\GitHub\S4Software.xml"/>
+			<item value=".xml"/>
+		</list>
+	</section>
+	<section name="quick_assist_proposal_size">
+	</section>
+</section>
