@@ -198,19 +198,21 @@ void loop() {
           {
             SpiSerial.print("Pong");
             delay(10); // handel this differently used to keep from over running out
+            Serial.println("Pong");
           }
       }
       while(Serial.available()) 
       {
           SpiSerial.write(Serial.read());
       }
+      
       char c;
       uint8_t sum;
 
        if (gpsSerial.available()) 
        {
           c = gpsSerial.read();
-          
+        
           if (bufferidx == 0) 
           {
             while (c != '$')

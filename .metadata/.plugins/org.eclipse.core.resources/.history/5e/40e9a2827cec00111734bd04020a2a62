@@ -18,7 +18,7 @@ public class PayloadDataController extends Thread
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
-	private long timeout = 10000;
+	private long timeout = 5000;
 	private Controller controller;
 	private String deviceName;
 	private boolean payloadConnected = true;
