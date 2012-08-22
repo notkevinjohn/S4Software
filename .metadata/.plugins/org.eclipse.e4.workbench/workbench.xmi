@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ASCII"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_ug1V8eM6EeGHBKOxY9gcMg" elementId="org.eclipse.e4.legacy.ide.application" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_ug1V8uM6EeGHBKOxY9gcMg" bindingContexts="_ug1V--M6EeGHBKOxY9gcMg">
   <tags>activeSchemeId:org.eclipse.ui.defaultAcceleratorConfiguration</tags>
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_ug1V8uM6EeGHBKOxY9gcMg" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_uw5yQ-M6EeGHBKOxY9gcMg" x="1400" y="280" width="1024" height="768">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_ug1V8uM6EeGHBKOxY9gcMg" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.ui.workbench" selectedElement="_uw5yQ-M6EeGHBKOxY9gcMg" x="0" y="0" width="1024" height="768">
     <tags>topLevel</tags>
     <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_uw5yQ-M6EeGHBKOxY9gcMg" selectedElement="_uw5yROM6EeGHBKOxY9gcMg" horizontal="true">
@@ -73,7 +73,7 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_vHXKceM6EeGHBKOxY9gcMg" elementId="org.eclipse.jdt.ui.TypeHierarchy" toBeRendered="false" ref="_vC5hMuM6EeGHBKOxY9gcMg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_vHXKcuM6EeGHBKOxY9gcMg" elementId="org.eclipse.jdt.ui.PackagesView" toBeRendered="false" ref="_vG7FkOM6EeGHBKOxY9gcMg"/>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKc-M6EeGHBKOxY9gcMg" containerData="7398" selectedElement="_vHXKeeM6EeGHBKOxY9gcMg">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKc-M6EeGHBKOxY9gcMg" containerData="7398" selectedElement="_vHXKdOM6EeGHBKOxY9gcMg">
               <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKdOM6EeGHBKOxY9gcMg" containerData="7000" selectedElement="_vHXKdeM6EeGHBKOxY9gcMg" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_vHXKdeM6EeGHBKOxY9gcMg" elementId="org.eclipse.ui.editorss" containerData="7000" ref="_vCmmQOM6EeGHBKOxY9gcMg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_vHXKduM6EeGHBKOxY9gcMg" elementId="topRight" containerData="3000" selectedElement="_vHXKd-M6EeGHBKOxY9gcMg">
@@ -213,17 +213,12 @@
       <tags>categoryTag:Help</tags>
     </sharedElements>
     <sharedElements xsi:type="advanced:Area" xmi:id="_vCmmQOM6EeGHBKOxY9gcMg" elementId="org.eclipse.ui.editorss" selectedElement="_vCmmQeM6EeGHBKOxY9gcMg">
-      <children xsi:type="basic:PartStack" xmi:id="_vCmmQeM6EeGHBKOxY9gcMg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_xdzoYOyFEeGL1qRpOlNq5A">
+      <children xsi:type="basic:PartStack" xmi:id="_vCmmQeM6EeGHBKOxY9gcMg" elementId="org.eclipse.e4.primaryDataStack" selectedElement="_X8ydgOyLEeGNm9lA_qaB-w">
         <tags>newtablook</tags>
         <tags>org.eclipse.e4.primaryDataStack</tags>
         <tags>EditorStack</tags>
         <children xsi:type="basic:Part" xmi:id="_XdHPAOx3EeG0UZ3XPsFyyA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="ConnectPayloadSocket.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/Connection/ConnectPayloadSocket.java" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/Connection/ConnectPayloadSocket.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;389&quot;/>&#xD;&#xA;&lt;/editor>"/>
-          <tags>Editor</tags>
-          <tags>removeOnHide</tags>
-        </children>
-        <children xsi:type="basic:Part" xmi:id="_Yg8qkOx3EeG0UZ3XPsFyyA" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PayloadDataController.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/SocketHandelers/PayloadDataController.java" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/SocketHandelers/PayloadDataController.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;589&quot; selectionTopPixel=&quot;120&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/Connection/ConnectPayloadSocket.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
         </children>
@@ -232,8 +227,13 @@
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
         </children>
-        <children xsi:type="basic:Part" xmi:id="_xdzoYOyFEeGL1qRpOlNq5A" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="Main.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/Main/Main.java" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/Main/Main.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+        <children xsi:type="basic:Part" xmi:id="_X3BMsOyLEeGNm9lA_qaB-w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="TerminalDataController.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/SocketHandelers/TerminalDataController.java" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/SocketHandelers/TerminalDataController.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;0&quot; selectionTopPixel=&quot;0&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <tags>Editor</tags>
+          <tags>removeOnHide</tags>
+        </children>
+        <children xsi:type="basic:Part" xmi:id="_X8ydgOyLEeGNm9lA_qaB-w" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="PayloadDataController.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/SocketHandelers/PayloadDataController.java" closeable="true">
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/SocketHandelers/PayloadDataController.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2422&quot; selectionTopPixel=&quot;855&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
         </children>
