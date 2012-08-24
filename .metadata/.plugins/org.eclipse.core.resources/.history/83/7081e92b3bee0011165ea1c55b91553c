@@ -82,13 +82,13 @@ public class PayloadDataController extends Thread
 					  pingLastReadTime = System.currentTimeMillis();
 				  }	   
 			}
-			Ping();
-//			if(Disconnected())
-//			{
-//				System.out.print(deviceName);
-//				System.out.print("disconnected");
-//				streamOut.streamOut("#");
-//			}
+		//	Ping();
+			if(Disconnected())
+			{
+				System.out.print(deviceName);
+				System.out.print("disconnected");
+				streamOut.streamOut("#");
+			}
 			
 			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}

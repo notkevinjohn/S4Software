@@ -18,7 +18,7 @@ public class PayloadDataController extends Thread
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
-	private long timeout = 3000;
+	private long timeout = 10000;
 	private Controller controller;
 	private String deviceName;
 	private boolean payloadConnected = true;
@@ -83,12 +83,12 @@ public class PayloadDataController extends Thread
 				  }	   
 			}
 			Ping();
-//			if(Disconnected())
-//			{
-//				System.out.print(deviceName);
-//				System.out.print("disconnected");
-//				streamOut.streamOut("#");
-//			}
+			if(Disconnected())
+			{
+				System.out.print(deviceName);
+			    System.out.println(" Disconnected!!!");
+		    	payloadConnected = false;
+			}
 			
 			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
 		}

@@ -82,7 +82,7 @@ public class PayloadDataController extends Thread
 					  pingLastReadTime = System.currentTimeMillis();
 				  }	   
 			}
-			Ping();
+		//	Ping();
 //			if(Disconnected())
 //			{
 //				System.out.print(deviceName);
