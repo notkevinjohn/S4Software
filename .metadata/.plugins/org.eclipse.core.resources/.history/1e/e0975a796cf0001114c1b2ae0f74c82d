@@ -33,6 +33,7 @@ public class PayloadDataController extends Thread
 		streamOut.attachSocket(socket);
 		
 		this.start();
+		//streamOut.streamOut("@"); // complete handshake
 	}
 	
 	public void run() 
@@ -52,7 +53,7 @@ public class PayloadDataController extends Thread
 			{
 				  streamInString = getStreamIn.StreamIn(socket);
 				  System.out.println(streamInString);
-				  if(!streamInString.startsWith("Pong"))  // Pong incoming
+				  if(!streamInString.equals("Pong"))  // Pong incoming
 				  {
 					  pingLastReadTime = System.currentTimeMillis();
 					  
@@ -86,7 +87,7 @@ public class PayloadDataController extends Thread
 			{
 				System.out.print(deviceName);
 				System.out.print("disconnected");
-				payloadConnected = false;
+				streamOut.streamOut("#");
 			}
 			
 			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}

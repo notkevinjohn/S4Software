@@ -196,7 +196,7 @@ void loop() {
           }
           else
           {
-            SpiSerial.print("Pong");
+            //SpiSerial.print("Pong");
             delay(10); // handel this differently used to keep from over running out
             Serial.println("Pong");
           }

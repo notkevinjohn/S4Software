@@ -33,6 +33,7 @@ public class PayloadDataController extends Thread
 		streamOut.attachSocket(socket);
 		
 		this.start();
+		//streamOut.streamOut("@"); // complete handshake
 	}
 	
 	public void run() 
@@ -86,6 +87,7 @@ public class PayloadDataController extends Thread
 			{
 				System.out.print(deviceName);
 				System.out.print("disconnected");
+				streamOut.streamOut("#");
 				payloadConnected = false;
 			}
 			

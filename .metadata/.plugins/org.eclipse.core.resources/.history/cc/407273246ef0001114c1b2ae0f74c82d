@@ -18,7 +18,7 @@ public class PayloadDataController extends Thread
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
-	private long timeout = 480000;
+	private long timeout = 60000;//480000;
 	private Controller controller;
 	private String deviceName;
 	private boolean payloadConnected = true;
@@ -33,6 +33,7 @@ public class PayloadDataController extends Thread
 		streamOut.attachSocket(socket);
 		
 		this.start();
+		//streamOut.streamOut("@"); // complete handshake
 	}
 	
 	public void run() 
@@ -86,6 +87,7 @@ public class PayloadDataController extends Thread
 			{
 				System.out.print(deviceName);
 				System.out.print("disconnected");
+				streamOut.streamOut("#");
 				payloadConnected = false;
 			}
 			
