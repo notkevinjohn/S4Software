@@ -204,17 +204,19 @@ void loop() {
          
             temperature = bmp085GetTemperature(bmp085ReadUT());
             pressure = bmp085GetPressure(bmp085ReadUP());   
-      
+            
+            
+            data += "@,!,";
             data += temperature;
-            data += ",";
+            data += ",&,";
             data += pressure;
            
             Serial.println(data);
-           
-            microSerial.println(data);
+
             microSerial.write((uint8_t *) buffer, bufferidx);
-            SpiSerial.println(data);
+            microSerial.println(data);
             SpiSerial.write((uint8_t *) buffer, bufferidx);
+            SpiSerial.println(data);
             data = "";
       
             bufferidx = 0;

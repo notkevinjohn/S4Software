@@ -1,0 +1,9 @@
+package Data;
+
+public class PayloadData 
+{
+
+	public String gpsData;
+	public String scienceData;
+	public long timeStamp;
+}

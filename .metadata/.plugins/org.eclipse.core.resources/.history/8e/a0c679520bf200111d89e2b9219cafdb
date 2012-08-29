@@ -14,7 +14,6 @@ import Main.Controller;
 public class PayloadDataController extends Thread
 {
 	public Vector<PayloadData> payloadDataVector;
-	public PayloadData payloadData;
 	private Socket socket;
 	private int available = 0;
 	private long pingLastReadTime = System.currentTimeMillis();
@@ -36,7 +35,6 @@ public class PayloadDataController extends Thread
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
 		payloadDataVector = new Vector<PayloadData>();
-		payloadData = new PayloadData();
 		this.start();
 	}
 	
@@ -61,16 +59,9 @@ public class PayloadDataController extends Thread
 				  
 				  if(streamInString.startsWith("$"))
 				  {
-					  payloadData.gpsData = streamInString;
+					  payloadDataVector.addElement(payload)
 				  }
-				  else
-				  {
-					  payloadData.scienceData = streamInString;
-					  payloadData.timeStamp = System.currentTimeMillis();
-					  payloadDataVector.addElement(payloadData);
-					  payloadData = new PayloadData();
-				  }
-				 
+					  
 				  if(controller.terminalDataList != null)
 				  {
 					for(int j = 0; j < controller.terminalDataList.size(); j++)

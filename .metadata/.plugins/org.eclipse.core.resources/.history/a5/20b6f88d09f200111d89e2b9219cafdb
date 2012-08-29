@@ -1,0 +1,10 @@
+package Data;
+
+import java.io.Serializable;
+
+public class PayloadData implements Serializable
+{
+	public String gpsData;
+	public String scienceData;
+	public long timeStamp;
+}

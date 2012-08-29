@@ -68,7 +68,6 @@ public class PayloadDataController extends Thread
 					  payloadData.scienceData = streamInString;
 					  payloadData.timeStamp = System.currentTimeMillis();
 					  payloadDataVector.addElement(payloadData);
-					  payloadData = new PayloadData();
 				  }
 				 
 				  if(controller.terminalDataList != null)
