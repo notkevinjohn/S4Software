@@ -83,7 +83,7 @@ public class TerminalDataController extends Thread
 			if(Disconnected())
 			{
 				System.out.print(payloadDeviceName);
-				System.out.println(" Disconected!!!");
+				System.out.println(" Terminal Disconected!!!");
 				terminalConnected = false;
 			}
 		

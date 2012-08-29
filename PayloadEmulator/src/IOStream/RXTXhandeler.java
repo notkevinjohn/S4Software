@@ -46,15 +46,15 @@ public class RXTXhandeler
 		if(available > 0)
 		{
 			  streamInString = getStreamIn.StreamIn(socket);
-			  
-			  if(!streamInString.equals("#"))
-			  {
+//			  
+//			  if(!streamInString.equals("#"))
+//			  {
 				  reciveWindow.updateText(streamInString);
-			  }
-			  else
-			  {
-				  sendStreamOut.streamOut("Pong");
-			  }
+//			  }
+//			  else
+//			  {
+//				  sendStreamOut.streamOut("Pong");
+//			  }
 		}
 		if((System.currentTimeMillis() - lastReadTime) > 1000)
 		{
@@ -84,14 +84,14 @@ public class RXTXhandeler
 		{
 			  streamInString = getStreamIn.StreamIn(socket);
 			  
-			  if(!streamInString.equals("#"))
-			  {
+//			  if(!streamInString.equals("#"))
+//			  {
 				  reciveWindow.updateText(streamInString);
-			  }
-			  else
-			  {
-				  sendStreamOut.streamOut("Pong");
-			  }
+//			  }
+//			  else
+//			  {
+//				  sendStreamOut.streamOut("Pong");
+//			  }
 		}
 		if((System.currentTimeMillis() - lastReadTime) > 1000)
 		{

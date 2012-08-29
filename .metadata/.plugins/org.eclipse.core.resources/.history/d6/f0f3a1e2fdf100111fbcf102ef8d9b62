@@ -14,10 +14,11 @@ public class PayloadDataController extends Thread
 	private Socket socket;
 	private int available = 0;
 	private long pingLastReadTime = System.currentTimeMillis();
+	private long lastPingTime = System.currentTimeMillis();
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
-	private long timeout = 180000; //3 min disconect time
+	private long timeout = 180000;
 	private Controller controller;
 	private String deviceName;
 	private boolean payloadConnected = true;
