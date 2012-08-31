@@ -1,6 +1,7 @@
 package Data;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.Vector;
 
@@ -19,6 +20,7 @@ public class GetName
 	public String streamInString;
 	public String DeviceName;
 	public Vector<TerminalPayloadList> payloadListVector;
+	public ObjectOutputStream objectOutputStream;
 	
 	public GetName(Controller controller) 
 	{
@@ -59,6 +61,7 @@ public class GetName
 					sendStreamOut.streamOut("Refresh");
 					ObjectStream objectStream =  new ObjectStream(payloadListVector);
 					objectStream.sendObject(socket);
+					objectOutputStream = objectStream.objectOutputStream;
 				 }
 			}
 			Ping();

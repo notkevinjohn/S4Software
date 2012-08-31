@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;PayloadData.java&apos; to &apos;Terminal/src/Data&apos;&#x0D;&#x0A;- Original project: &apos;Server&apos;&#x0D;&#x0A;- Destination element: &apos;Terminal/src/Data&apos;&#x0D;&#x0A;- Original element: &apos;Data.PayloadData.java&apos;" description="Copy compilation unit" destination="=Terminal/src&lt;Data" element1="/src&lt;Data{PayloadData.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1346434650726" units="1" version="1.0"/>
+</session>

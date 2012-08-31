@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.Vector"/>
+<fullyQualifiedTypeName name="IOStream.ObjectStream"/>
+<fullyQualifiedTypeName name="IOStream.PayloadObjectTX"/>
+<fullyQualifiedTypeName name="IOStream.PayloadObjectRX"/>
+<fullyQualifiedTypeName name="java.io.InputStream"/>
 <fullyQualifiedTypeName name="Data.PayloadData"/>
+<fullyQualifiedTypeName name="IOStream.GetObjectStream"/>
+<fullyQualifiedTypeName name="java.io.ObjectInputStream"/>
+<fullyQualifiedTypeName name="IOStream.SendStreamOut"/>
+<fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 </qualifiedTypeNameHistroy>

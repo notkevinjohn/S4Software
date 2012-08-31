@@ -2,10 +2,15 @@ package Main;
 
 import java.awt.Color;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.Vector;
+
 import javax.swing.SwingUtilities;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+
+import Data.PayloadData;
 import Events.CompleteSendEventListener;
 import Events.StartStop.ICompleteStartEventListener;
 import Events.StartStop.ICompleteStopEventListener;
@@ -15,30 +20,37 @@ import Events.ICompleteSendEventListener;
 import FileWriters.WiFiWriter;
 import GUI.Terminal;
 import IOStream.GetStreamIn;
+import IOStream.PayloadObjectRX;
 import IOStream.SendStreamOut;
 import Socket.Reconnect;
 
 public class DataController extends Thread 
 {
 	private Terminal terminal;
-	private Socket socket;
+	public Socket socket;
+	private int updateRate = 1000;
 	private SendStreamOut streamOut;
 	private String streamInString;
 	private GetStreamIn getStreamIn;
 	private int available = 0;
 	private SimpleAttributeSet blue = new SimpleAttributeSet();
 	private SimpleAttributeSet green = new SimpleAttributeSet();
-	private int timeout = 5000;
+	public Vector<PayloadData> payloadDataVector;
 	public boolean boolStream = true;
 	public long lastReadTime = System.currentTimeMillis();
+	public long lastUpdateTime = System.currentTimeMillis();;
 	public String ip;
 	public int port;
 	public WiFiWriter wiFiWriter;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
 	public String pongString = "Pong"; // need to dynamically change if connected to server or payload!!!
 	public String deviceName;
-	public void Initilize(Socket socket, String ip, int port, String deviceName)
+	public PayloadObjectRX payloadObjectRX;
+	public  ObjectInputStream objectInputStream;
+	
+	public void Initilize(Socket socket, String ip, int port, String deviceName, ObjectInputStream objectInputStream)
 	{
+		this.objectInputStream = objectInputStream;
 		this.socket = socket;
 		this.ip = ip;
 		this.port = port;
@@ -52,6 +64,7 @@ public class DataController extends Thread
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
+		payloadObjectRX = new PayloadObjectRX(socket,objectInputStream);
 		
 		TextSendController();
 		Start();
@@ -79,13 +92,23 @@ public class DataController extends Thread
 					  lastReadTime = System.currentTimeMillis();
 					  streamInString = getStreamIn.StreamIn(socket);
 					  
-					  if(!streamInString.equals("Ping"))
+//					  if(!streamInString.equals("Ping"))
+//					  {
+//						  updateText(streamInString , blue);
+//					  }
+//					  else
+//					  {
+//						  Pong();
+//					  }
+					  if(streamInString.equals("PayloadUpdate"))
 					  {
-						  updateText(streamInString , blue);
-					  }
-					  else
-					  {
-						  Pong();
+							payloadDataVector = payloadObjectRX.getPayloadObject();
+							
+							if(payloadDataVector != null)
+							{
+								updateText(payloadDataVector.lastElement().gpsData , blue);
+								updateText(payloadDataVector.lastElement().scienceData , blue);
+							}
 					  }
 				}
 				
@@ -104,6 +127,14 @@ public class DataController extends Thread
 						terminal.btnSend.setEnabled(true);
 						lastReadTime = System.currentTimeMillis();			
 					}
+				}
+				
+				if(System.currentTimeMillis() - lastUpdateTime > updateRate)
+				{
+					String stringOut = "payloadUpdateRequest." + deviceName;
+					streamOut.streamOut(stringOut);
+					lastUpdateTime = System.currentTimeMillis();
+
 				}
 				
 			}
@@ -156,7 +187,7 @@ public class DataController extends Thread
 	
 	public boolean isConnectionAlive()
 	{
-		return (System.currentTimeMillis() - lastReadTime) < timeout;
+		return true; //(System.currentTimeMillis() - lastReadTime) < timeout;
 	}
 
 	public static void addCompleteSendEventListener (ICompleteSendEventListener completeSendEventListener)

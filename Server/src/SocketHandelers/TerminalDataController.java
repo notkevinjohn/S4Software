@@ -11,7 +11,7 @@ import Main.Controller;
 
 public class TerminalDataController extends Thread
 {
-	private Socket socket;
+	public Socket socket;
 	private int available = 0;
 	public SendStreamOut streamOut;
 	public String streamInString;
@@ -25,9 +25,11 @@ public class TerminalDataController extends Thread
 	public boolean isPayloadIPSet = false;
 	public int payloadElementNubmer;
 	public String payloadDeviceName;
+	public Controller controller;
 	
-	public TerminalDataController(Socket socket, int payloadElementNubmer, String payloadDeviceName)
+	public TerminalDataController(Socket socket, int payloadElementNubmer, String payloadDeviceName, Controller controller)
 	{
+		this.controller = controller;
 		this.payloadDeviceName = payloadDeviceName;
 		this.socket = socket;
 		this.payloadElementNubmer = payloadElementNubmer;
@@ -42,8 +44,6 @@ public class TerminalDataController extends Thread
 	
 	public void run() 
 	{
-		
-		
 		while(terminalConnected)
 		{
 			try 
@@ -58,25 +58,31 @@ public class TerminalDataController extends Thread
 			if(available > 0)
 			{
 				  streamInString = getStreamIn.StreamIn(socket);
+				  pingLastReadTime = System.currentTimeMillis();
 				  
+				  if(streamInString.startsWith("payloadUpdateRequest."))
+				  {
+					  String payloadRequested = streamInString.substring(21);
+					  payloadUpdateRequested(payloadRequested);
+				  }
 
 				  if(streamInString.equals("Pong"))
 				  {
 					  pingLastReadTime = System.currentTimeMillis();
 				  }
-				  else
-				  {
-					  CompleteTerminalTXEvent complete = new CompleteTerminalTXEvent(this,payloadElementNubmer,streamInString); 
-						Object[] listeners = Controller.listenerList.getListenerList(); 
-				   		for (int i=0; i<listeners.length; i+=2) 
-				   		{
-				             if (listeners[i]==ICompleteTerminalTXEventListener.class)
-				             {
-				                 ((ICompleteTerminalTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
-				             }
-				        }
-				   	pingLastReadTime = System.currentTimeMillis();
-				  }
+//				  else
+//				  {
+//					  CompleteTerminalTXEvent complete = new CompleteTerminalTXEvent(this,payloadElementNubmer,streamInString); 
+//						Object[] listeners = Controller.listenerList.getListenerList(); 
+//				   		for (int i=0; i<listeners.length; i+=2) 
+//				   		{
+//				             if (listeners[i]==ICompleteTerminalTXEventListener.class)
+//				             {
+//				                 ((ICompleteTerminalTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
+//				             }
+//				        }
+//				   	pingLastReadTime = System.currentTimeMillis();
+//				  }
 			}
 			
 			Ping();
@@ -91,6 +97,10 @@ public class TerminalDataController extends Thread
 		}
 	}
 	
+	public void payloadUpdateRequested(String payloadRequested)
+	{
+		controller.terminalRequestForUpdate(this, payloadRequested);
+	}
 	public void StreamOut(String sendText)
 	{
 		streamOut.streamOut(sendText);
@@ -99,13 +109,13 @@ public class TerminalDataController extends Thread
 	public boolean Disconnected()
 	{
 
-		return (System.currentTimeMillis() - pingLastReadTime) > timeout;
+		return false; //(System.currentTimeMillis() - pingLastReadTime) > timeout;
 
 	}
 		
 	public void Ping()
 	{
-		if((System.currentTimeMillis() - pingLastReadTime) > 3000 && (System.currentTimeMillis() - lastPingTime) > 3000)
+		if((System.currentTimeMillis() - pingLastReadTime) > 1000 && (System.currentTimeMillis() - lastPingTime) > 1000)
 		{
 			streamOut.streamOut("Ping"); // Ping outgoing
 			lastPingTime = System.currentTimeMillis();

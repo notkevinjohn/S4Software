@@ -1,6 +1,7 @@
 package Connection;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -21,7 +22,7 @@ public class ConnectTerminalSocket extends Thread
 	private Controller controller;
 	public ServerSocket serverTerminalSocket;
 	public Vector<TerminalDataController> terminalDataList;
-	
+	public ObjectOutputStream objectOutputStream;
 	public ConnectTerminalSocket(Controller controller, ConnectTermToPayload connectTermToPayload)
 	{
 		this.controller = controller;
@@ -45,14 +46,17 @@ public class ConnectTerminalSocket extends Thread
 			terminal = new Terminal();
 			terminal.socket = socket;
 			terminal.deviceName = getName.getPName(socket);
+			objectOutputStream = getName.objectOutputStream;
 			terminalList.add(terminal);
+			
 		
 			payloadSocketNubmer = connectTermToPayload.Connect(terminal.deviceName);
 			if(payloadSocketNubmer != 99)
 			{
-				TerminalDataController terminalDataController = new TerminalDataController(socket, payloadSocketNubmer, terminal.deviceName);
+				TerminalDataController terminalDataController = new TerminalDataController(socket, payloadSocketNubmer, terminal.deviceName,controller);
 				terminalDataList.add(terminalDataController);
 				controller.UpDateTerminalList(terminalDataList);
+				controller.objectOutputStream = objectOutputStream;
 			}
 			else
 			{

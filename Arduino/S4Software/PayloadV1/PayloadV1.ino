@@ -74,7 +74,7 @@ void setup() {
   WiFly.begin();                            // Sometimes hange on get uart
   WiFly.JoinRouter("DeviceTesting");
   
-  bmp085Calibration();
+  //bmp085Calibration();
   Serial.println("\r\nGPSlogger");
  // pinMode(led1Pin, OUTPUT);
  // pinMode(led2Pin, OUTPUT);
@@ -202,8 +202,8 @@ void loop() {
             
             bufferidx++;
          
-            temperature = bmp085GetTemperature(bmp085ReadUT());
-            pressure = bmp085GetPressure(bmp085ReadUP());   
+            temperature = 50; //bmp085GetTemperature(bmp085ReadUT());
+            pressure = 100; //bmp085GetPressure(bmp085ReadUP());   
             
             
             data += "@,!,";

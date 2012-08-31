@@ -9,7 +9,7 @@ import Data.TerminalPayloadList;
 public class ObjectStream
 {
 	public Vector<TerminalPayloadList> payloadListVector;
-	
+	public ObjectOutputStream objectOutputStream;
 	public ObjectStream(Vector<TerminalPayloadList> payloadListVector)
 	{
 		this.payloadListVector = payloadListVector;
@@ -17,16 +17,16 @@ public class ObjectStream
 	}
 	public void sendObject(Socket socket)
 	{
-		ObjectOutputStream output;
 		try {
-			output = new ObjectOutputStream(socket.getOutputStream());
+			objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
 			//Object obj = (Object)payloadList;
-			output.writeUnshared(payloadListVector);
-			output.flush();
+			objectOutputStream.writeUnshared(payloadListVector);
+			objectOutputStream.flush();
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+		
 
 	}
 

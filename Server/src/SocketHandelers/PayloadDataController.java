@@ -3,10 +3,7 @@ package SocketHandelers;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Vector;
-
 import Data.PayloadData;
-import Events.CompletePayloadTXEvent;
-import Events.ICompletePayloadTXEventListener;
 import IOStream.GetStreamIn;
 import IOStream.SendStreamOut;
 import Main.Controller;
@@ -15,6 +12,7 @@ public class PayloadDataController extends Thread
 {
 	public Vector<PayloadData> payloadDataVector;
 	public PayloadData payloadData;
+	public String deviceName;
 	private Socket socket;
 	private int available = 0;
 	private long pingLastReadTime = System.currentTimeMillis();
@@ -22,8 +20,7 @@ public class PayloadDataController extends Thread
 	private String streamInString;
 	private GetStreamIn getStreamIn;
 	private long timeout = 180000; //3 min disconect time
-	private Controller controller;
-	private String deviceName;
+	
 	private boolean payloadConnected = true;
 	
 	
@@ -31,7 +28,6 @@ public class PayloadDataController extends Thread
 	{
 		this.socket = socket;
 		this.deviceName = deviceName;
-		this.controller = controller;
 		getStreamIn = new GetStreamIn();
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
@@ -61,35 +57,33 @@ public class PayloadDataController extends Thread
 				  
 				  if(streamInString.startsWith("$"))
 				  {
-					  payloadData.gpsData = streamInString;
-				  }
-				  else
-				  {
-					  payloadData.scienceData = streamInString;
+					  int scienceDataStart = streamInString.indexOf('@');
+					  payloadData.gpsData = streamInString.substring(1,scienceDataStart);
+					  payloadData.scienceData = streamInString.substring(scienceDataStart);
 					  payloadData.timeStamp = System.currentTimeMillis();
 					  payloadDataVector.addElement(payloadData);
 					  payloadData = new PayloadData();
 				  }
 				 
-				  if(controller.terminalDataList != null)
-				  {
-					for(int j = 0; j < controller.terminalDataList.size(); j++)
-					{
-						if(controller.terminalDataList.get(j).payloadDeviceName.equals(deviceName))
-						{
-							CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,j,streamInString); // 0 is the first terminal need to assign this!!! create list and loop through?
-							Object[] listeners = Controller.listenerList.getListenerList(); 
-							for (int i=0; i<listeners.length; i+=2) 
-							{
-							    if (listeners[i]==ICompletePayloadTXEventListener.class)
-							    {
-							    	((ICompletePayloadTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
-							    }
-							} 
-						}
-				   		
-					}
-				  }	 
+//				  if(controller.terminalDataList != null)
+//				  {
+//					for(int j = 0; j < controller.terminalDataList.size(); j++)
+//					{
+//						if(controller.terminalDataList.get(j).payloadDeviceName.equals(deviceName))
+//						{
+//							CompletePayloadTXEvent complete = new CompletePayloadTXEvent(this,j,streamInString); // 0 is the first terminal need to assign this!!! create list and loop through?
+//							Object[] listeners = Controller.listenerList.getListenerList(); 
+//							for (int i=0; i<listeners.length; i+=2) 
+//							{
+//							    if (listeners[i]==ICompletePayloadTXEventListener.class)
+//							    {
+//							    	((ICompletePayloadTXEventListener)listeners[i+1]).CompleteTXEventHandler(complete);
+//							    }
+//							} 
+//						}
+//				   		
+//					}
+//				  }	 
 			}
 
 			if(Disconnected())
