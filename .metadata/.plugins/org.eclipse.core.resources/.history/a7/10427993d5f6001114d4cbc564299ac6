@@ -1,0 +1,81 @@
+package SocketHandelers;
+
+import java.io.IOException;
+import java.net.Socket;
+
+import Events.ICompleteTerminalTXEventListener;
+import IOStream.GetStreamIn;
+import IOStream.SendStreamOut;
+import Main.Controller;
+
+public class TerminalDataController extends Thread
+{
+	private int available = 0;
+	private Socket socket;
+	public SendStreamOut streamOut;
+	public String streamInString;
+	public GetStreamIn getStreamIn;
+	public boolean terminalConnected = true;
+	public String payloadConnectIP = "";
+	public boolean isPayloadIPSet = false;
+	public int payloadElementNubmer;
+	public String payloadDeviceName;
+	public Controller controller;
+	
+	public TerminalDataController(Socket socket, int payloadElementNubmer, String payloadDeviceName, Controller controller)
+	{
+		this.controller = controller;
+		this.payloadDeviceName = payloadDeviceName;
+		this.socket = socket;
+		this.payloadElementNubmer = payloadElementNubmer;
+		
+		getStreamIn = new GetStreamIn();
+		streamOut = new SendStreamOut();
+		streamOut.attachSocket(socket);
+		
+		this.start();
+		streamOut.streamOut("@"); // Complete handshake
+	}
+	
+	public void run() 
+	{
+		while(terminalConnected)
+		{
+			try 
+			{
+				available = socket.getInputStream().available();
+			} 
+			catch (IOException e) 
+			{
+				e.printStackTrace();
+			}
+			
+			if(available > 0)
+			{
+				  streamInString = getStreamIn.StreamIn(socket);
+				  pingLastReadTime = System.currentTimeMillis();
+				  
+				  if(streamInString.startsWith("payloadUpdateRequest."))
+				  {
+					  String payloadRequested = streamInString.substring(21);
+
+					  payloadRequested = payloadRequested.replaceAll("(\\r|\\n)", "");
+					  payloadUpdateRequested(payloadRequested);
+				  }
+			}
+			
+			try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
+		}
+	}
+	
+	public void payloadUpdateRequested(String payloadRequested)
+	{
+		controller.terminalRequestForUpdate(this, payloadRequested);
+	}
+	public void StreamOut(String sendText)
+	{
+		streamOut.streamOut(sendText);
+	}
+	
+
+}

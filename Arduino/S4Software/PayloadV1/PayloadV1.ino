@@ -72,7 +72,7 @@ void setup() {
   microSerial.begin(MICRORATE);
   Wire.begin();
   WiFly.begin();                            // Sometimes hange on get uart
-  WiFly.JoinRouter("DeviceTesting");
+  
   
   //bmp085Calibration();
   Serial.println("\r\nGPSlogger");
@@ -138,6 +138,7 @@ void setup() {
     gpsSerial.print(WAAS_OFF);
 #endif
 Serial.println("Done!");
+WiFly.JoinRouter("DeviceTesting");
 }
 
 void loop() {
@@ -247,7 +248,7 @@ void loop() {
            SpiSerial.print("DeviceName");
            SpiSerial.println(DeviceName);
           }
-          else if(tempChar == '@')
+          if(tempChar == '@')
           {
             delay (1000);
             start = true;

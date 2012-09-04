@@ -17,16 +17,13 @@ public class ConnectTerminalSocket extends Thread
 	private int terminalPort = 2001;
 	private Terminal terminal;
 	private Vector<Terminal> terminalList;
-	private ConnectTermToPayload connectTermToPayload;
-	private int payloadSocketNubmer = 0;
 	private Controller controller;
 	public ServerSocket serverTerminalSocket;
 	public Vector<TerminalDataController> terminalDataList;
 	public ObjectOutputStream objectOutputStream;
-	public ConnectTerminalSocket(Controller controller, ConnectTermToPayload connectTermToPayload)
+	public ConnectTerminalSocket(Controller controller)
 	{
 		this.controller = controller;
-		this.connectTermToPayload = connectTermToPayload;
 		terminalDataList = new Vector<TerminalDataController>();
 		terminalList = new Vector<Terminal>();
 		
@@ -49,19 +46,10 @@ public class ConnectTerminalSocket extends Thread
 			objectOutputStream = getName.objectOutputStream;
 			terminalList.add(terminal);
 			
-		
-			payloadSocketNubmer = connectTermToPayload.Connect(terminal.deviceName);
-			if(payloadSocketNubmer != 99)
-			{
-				TerminalDataController terminalDataController = new TerminalDataController(socket, payloadSocketNubmer, terminal.deviceName,controller);
-				terminalDataList.add(terminalDataController);
-				controller.UpDateTerminalList(terminalDataList);
-				controller.objectOutputStream = objectOutputStream;
-			}
-			else
-			{
-				System.out.println("Fail"); // need to make this do something to correct it
-			}
+			TerminalDataController terminalDataController = new TerminalDataController(socket, terminal.deviceName,controller);
+			terminalDataList.add(terminalDataController);
+			controller.UpDateTerminalList(terminalDataList);
+			controller.objectOutputStream = objectOutputStream;
 	}
 	public void run() 
 	{

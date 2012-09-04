@@ -1,10 +1,9 @@
 package Main;
 
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.Vector;
-
 import Connection.ConnectPayloadSocket;
-import Connection.ConnectTermToPayload;
 import Connection.ConnectTerminalSocket;
 import Data.Payload;
 import Data.PayloadData;
@@ -30,17 +29,16 @@ public class Controller extends Thread
 	public SendStreamOut streamOut;
 	public ObjectOutputStream objectOutputStream;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
+	public Socket socket;
 	
 	public Controller()
 	{	
 		new GUI();
 		this.start();
-		ConnectTermToPayload connectTermToPayload = new ConnectTermToPayload();
 		ConnectPayloadSocket connectPayloadSocket = new ConnectPayloadSocket(this);
-		ConnectTerminalSocket connectTerminalSocket = new ConnectTerminalSocket(this, connectTermToPayload);
+		ConnectTerminalSocket connectTerminalSocket = new ConnectTerminalSocket(this);
 		connectPayloadSocket.start();
 		connectTerminalSocket.start();
-		connectTermToPayload.connectTermToPayload(this,connectPayloadSocket,connectTerminalSocket);
 		streamOut = new SendStreamOut();
 		payloadObjectTX = new PayloadObjectTX();
 		
@@ -85,13 +83,14 @@ public class Controller extends Thread
 	{
 		for(int i = 0; i < payloadDataList.size(); i++)
 		{
-			if(payloadName.equals(payloadDataList.get(i).deviceName))
+			if(payloadName.equals(payloadDataList.get(i).deviceName) && payloadDataList.size() >0 && payloadDataList.get(0).payloadDataVector.size() > 0)
 			{
 				
 				PayloadData payloadLastData = payloadDataList.get(i).payloadDataVector.get(payloadDataList.get(i).payloadDataVector.size()-1);
 				streamOut.attachSocket(termDataController.socket);
 				streamOut.streamOut("PayloadUpdate");
-				//try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
+				try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
+				
 				payloadObjectTX.sendObject(termDataController.socket, payloadLastData, objectOutputStream);
 			}
 		}

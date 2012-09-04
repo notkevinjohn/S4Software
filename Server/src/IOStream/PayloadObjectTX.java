@@ -14,7 +14,7 @@ public class PayloadObjectTX
 	{
 		try 
 		{
-			objectOutputStream.writeUnshared(payloadLastData);
+			objectOutputStream.writeObject(payloadLastData);
 			objectOutputStream.flush();
 		} 
 		catch (IOException e)
