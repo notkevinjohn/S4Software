@@ -17,7 +17,7 @@ public class SendName
 	public String streamInString;
 	public GetStreamIn getStreamIn;
 	public String deviceName;
-	private boolean deviceNameSet = true;
+	private boolean deviceNameSet = false;
 	public GetObjectStream getObjectStream;
 	public Vector<TerminalPayloadList> payloadListVector;
 	public SendConnectionName sendConnectionName;
@@ -38,7 +38,7 @@ public class SendName
 		
 		
 		
-		while(deviceNameSet)
+		while(!deviceNameSet)
 		{
 			try 
 			{
@@ -51,13 +51,13 @@ public class SendName
 			if(available > 0)
 			{
 				 streamInString = getStreamIn.StreamIn(socket);
-				 if(streamInString.equals("#"))
+//				 if(streamInString.equals("#"))
+//				 {
+//					 sendStreamOut.streamOut("Pong");
+//				 }
+				 if (streamInString.equals("@"))
 				 {
-					 sendStreamOut.streamOut("Pong");
-				 }
-				 else if (streamInString.equals("@"))
-				 {
-					 deviceNameSet = false;
+					 deviceNameSet = true;
 					 
 				 }
 				 else if(streamInString.equals("Refresh"))
@@ -74,7 +74,10 @@ public class SendName
 	public void TXName(String sendString)
 	{
 		 sendStreamOut.streamOut(sendString);
-		 deviceName = sendString.substring(10);
+		 if(!sendString.equals("Refresh"))
+		 {
+			 deviceName = sendString.substring(10);
+		 }
 	}
 }
 

@@ -19,14 +19,20 @@ public class PayloadObjectRX
 	}
 	
 	
-	public   Vector<PayloadData> getPayloadObject()	
+	public   Vector<PayloadData> getPayloadObject(Vector<PayloadData> payloadDataVector)	
 	{
 		try 
 		{				
 			try 
 			{
+				
 				Object updatePayloadData = 	(Object)objectInputStream.readObject();
 				
+				if(objectInputStream.available() >0)
+				{
+					objectInputStream.readObject();
+					System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdLeftover Stuff ");
+				}
 				payloadDataVector.addElement((PayloadData) updatePayloadData);
 			} 
 			catch (ClassNotFoundException e) 

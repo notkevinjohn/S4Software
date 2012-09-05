@@ -4842,3 +4842,22 @@ Java Model Exception: Java Model Status [Timed out while retrieving the attached
 	at org.eclipse.jface.text.TextViewerHoverManager$4.run(TextViewerHoverManager.java:166)
 !SUBENTRY 1 org.eclipse.jdt.core 4 1012 2012-09-04 14:13:36.392
 !MESSAGE Timed out while retrieving the attached javadoc for System [in System.class [in java.lang [in C:\Program Files\Java\jre7\lib\rt.jar]]] 
+!SESSION 2012-09-05 09:51:09.756 -----------------------------------------------
+eclipse.buildId=I20120608-1400
+java.version=1.7.0
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 4 4 2012-09-05 09:53:36.724
+!MESSAGE Unable to find Action Set: adt.actionSet.wizards
+
+!ENTRY org.eclipse.ui 4 4 2012-09-05 09:53:36.802
+!MESSAGE Unable to find Action Set: adt.actionSet.refactorings
+
+!ENTRY org.eclipse.ui 4 4 2012-09-05 09:53:36.802
+!MESSAGE Unable to find Action Set: adt.actionSet.avdManager
+
+!ENTRY org.eclipse.ui 4 4 2012-09-05 09:53:36.802
+!MESSAGE Unable to find Action Set: adt.actionSet.lint

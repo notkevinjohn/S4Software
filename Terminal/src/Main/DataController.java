@@ -43,7 +43,6 @@ public class DataController extends Thread
 	public int port;
 	public WiFiWriter wiFiWriter;
 	public static javax.swing.event.EventListenerList listenerList = new javax.swing.event.EventListenerList();
-	public String pongString = "Pong"; // need to dynamically change if connected to server or payload!!!
 	public String deviceName;
 	public PayloadObjectRX payloadObjectRX;
 	public  ObjectInputStream objectInputStream;
@@ -65,7 +64,7 @@ public class DataController extends Thread
 		streamOut = new SendStreamOut();
 		streamOut.attachSocket(socket);
 		payloadObjectRX = new PayloadObjectRX(socket,objectInputStream);
-		
+		payloadDataVector = new Vector<PayloadData>();
 		TextSendController();
 		Start();
 		Stop();
@@ -91,18 +90,11 @@ public class DataController extends Thread
 				{
 					  lastReadTime = System.currentTimeMillis();
 					  streamInString = getStreamIn.StreamIn(socket);
-					  
-//					  if(!streamInString.equals("Ping"))
-//					  {
-//						  updateText(streamInString , blue);
-//					  }
-//					  else
-//					  {
-//						  Pong();
-//					  }
-					  if(streamInString.equals("PayloadUpdate"))
+					  System.out.println(streamInString);
+					   
+					  if(streamInString.startsWith("PayloadUpdate"))
 					  {
-							payloadDataVector = payloadObjectRX.getPayloadObject();
+							payloadDataVector = payloadObjectRX.getPayloadObject(payloadDataVector);
 							
 							if(payloadDataVector != null)
 							{
@@ -112,22 +104,22 @@ public class DataController extends Thread
 					  }
 				}
 				
-				if(!isConnectionAlive())
-				{
-					updateText("Lost Connection...\n" , green);
-					terminal.btnSend.setEnabled(false);
-					
-					Reconnect reconnect = new Reconnect(this,ip,port);
-					socket = reconnect.socketLoop();
-					
-					if(socket.isBound())
-					{
-						
-						streamOut.attachSocket(socket);
-						terminal.btnSend.setEnabled(true);
-						lastReadTime = System.currentTimeMillis();			
-					}
-				}
+//				if(!isConnectionAlive())
+//				{
+//					updateText("Lost Connection...\n" , green);
+//					terminal.btnSend.setEnabled(false);
+//					
+//					Reconnect reconnect = new Reconnect(this,ip,port);
+//					socket = reconnect.socketLoop();
+//					
+//					if(socket.isBound())
+//					{
+//						
+//						streamOut.attachSocket(socket);
+//						terminal.btnSend.setEnabled(true);
+//						lastReadTime = System.currentTimeMillis();			
+//					}
+//				}
 				
 				if(System.currentTimeMillis() - lastUpdateTime > updateRate)
 				{
@@ -147,11 +139,6 @@ public class DataController extends Thread
 		}
 	}
 	
-	public void Pong()
-	{
-		streamOut.streamOut(pongString); // Ping outgoing need to change if connected directly or separately!!!!
-	
-	}
 	public void updateText(final String _streamInString, final SimpleAttributeSet type) {
 		  SwingUtilities.invokeLater(new Runnable() {
 		    public void run() {

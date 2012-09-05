@@ -5,7 +5,7 @@
     <tags>topLevel</tags>
     <tags>shellMaximized</tags>
     <children xsi:type="basic:PartSashContainer" xmi:id="_uw5yQ-M6EeGHBKOxY9gcMg" selectedElement="_uw5yROM6EeGHBKOxY9gcMg" horizontal="true">
-      <children xsi:type="advanced:PerspectiveStack" xmi:id="_uw5yROM6EeGHBKOxY9gcMg" elementId="PerspectiveStack" containerData="7500" selectedElement="_9QQZMOx5EeG0UZ3XPsFyyA">
+      <children xsi:type="advanced:PerspectiveStack" xmi:id="_uw5yROM6EeGHBKOxY9gcMg" elementId="PerspectiveStack" containerData="7500" selectedElement="_vHOAgOM6EeGHBKOxY9gcMg">
         <children xsi:type="advanced:Perspective" xmi:id="_vHOAgOM6EeGHBKOxY9gcMg" elementId="org.eclipse.jst.j2ee.J2EEPerspective" selectedElement="_vHOAgeM6EeGHBKOxY9gcMg" label="Java EE" iconURI="platform:/plugin/org.eclipse.jst.j2ee.ui/icons/full/cview16/j2ee_perspective.gif">
           <persistedState key="persp.hiddenItems" value="persp.hideToolbarSC:org.eclipse.debug.ui.commands.RunToLine,persp.hideToolbarSC:org.eclipse.jdt.ui.actions.OpenProjectWizard,persp.hideToolbarSC:org.eclipse.ui.edit.text.toggleShowSelectedElementOnly,"/>
           <tags>persp.actionSet:org.eclipse.mylyn.context.ui.actionSet</tags>
@@ -73,7 +73,7 @@
               <children xsi:type="advanced:Placeholder" xmi:id="_vHXKceM6EeGHBKOxY9gcMg" elementId="org.eclipse.jdt.ui.TypeHierarchy" toBeRendered="false" ref="_vC5hMuM6EeGHBKOxY9gcMg"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_vHXKcuM6EeGHBKOxY9gcMg" elementId="org.eclipse.jdt.ui.PackagesView" toBeRendered="false" ref="_vG7FkOM6EeGHBKOxY9gcMg"/>
             </children>
-            <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKc-M6EeGHBKOxY9gcMg" containerData="7790" selectedElement="_vHXKeeM6EeGHBKOxY9gcMg">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKc-M6EeGHBKOxY9gcMg" containerData="7790" selectedElement="_vHXKdOM6EeGHBKOxY9gcMg">
               <children xsi:type="basic:PartSashContainer" xmi:id="_vHXKdOM6EeGHBKOxY9gcMg" containerData="7000" selectedElement="_vHXKdeM6EeGHBKOxY9gcMg" horizontal="true">
                 <children xsi:type="advanced:Placeholder" xmi:id="_vHXKdeM6EeGHBKOxY9gcMg" elementId="org.eclipse.ui.editorss" containerData="9000" ref="_vCmmQOM6EeGHBKOxY9gcMg"/>
                 <children xsi:type="basic:PartStack" xmi:id="_vHXKduM6EeGHBKOxY9gcMg" elementId="topRight" containerData="1000" selectedElement="_vHXKd-M6EeGHBKOxY9gcMg">
@@ -85,7 +85,6 @@
               <children xsi:type="basic:PartStack" xmi:id="_vHXKeeM6EeGHBKOxY9gcMg" elementId="bottomRight" containerData="3000" selectedElement="_vHXKgeM6EeGHBKOxY9gcMg">
                 <tags>newtablook</tags>
                 <tags>org.eclipse.e4.secondaryDataStack</tags>
-                <tags>active</tags>
                 <children xsi:type="advanced:Placeholder" xmi:id="_vHXKeuM6EeGHBKOxY9gcMg" elementId="org.eclipse.ui.views.AllMarkersView" ref="_vG7FkeM6EeGHBKOxY9gcMg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_vHXKe-M6EeGHBKOxY9gcMg" elementId="org.eclipse.ui.views.PropertySheet" ref="_vG7FkuM6EeGHBKOxY9gcMg"/>
                 <children xsi:type="advanced:Placeholder" xmi:id="_vHXKfOM6EeGHBKOxY9gcMg" elementId="org.eclipse.wst.server.ui.ServersView" ref="_vG7Fk-M6EeGHBKOxY9gcMg"/>
@@ -141,8 +140,8 @@
           <tags>persp.perspSC:org.eclipse.wst.jsdt.ui.JavaPerspective</tags>
           <tags>persp.showIn:org.eclipse.wst.jsdt.ui.PackageExplorer</tags>
           <tags>persp.perspSC:org.eclipse.wst.xml.ui.perspective</tags>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_9QQZMex5EeG0UZ3XPsFyyA" selectedElement="_9QSOYex5EeG0UZ3XPsFyyA">
-            <children xsi:type="basic:PartSashContainer" xmi:id="_9QQZMux5EeG0UZ3XPsFyyA" containerData="7937" selectedElement="_9QRnVOx5EeG0UZ3XPsFyyA">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_9QQZMex5EeG0UZ3XPsFyyA" selectedElement="_9QQZMux5EeG0UZ3XPsFyyA">
+            <children xsi:type="basic:PartSashContainer" xmi:id="_9QQZMux5EeG0UZ3XPsFyyA" containerData="7937" selectedElement="_9QQZM-x5EeG0UZ3XPsFyyA">
               <children xsi:type="basic:PartSashContainer" xmi:id="_9QQZM-x5EeG0UZ3XPsFyyA" containerData="5000" selectedElement="_9QRAQOx5EeG0UZ3XPsFyyA" horizontal="true">
                 <children xsi:type="basic:PartStack" xmi:id="_9QRAQOx5EeG0UZ3XPsFyyA" elementId="org.eclipse.debug.internal.ui.NavigatorFolderView" containerData="3237" selectedElement="_9QRAQex5EeG0UZ3XPsFyyA">
                   <tags>newtablook</tags>
@@ -241,7 +240,7 @@
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_9XQnkPbWEeG8HeJN251YUg" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="GetName.java" iconURI="platform:/plugin/org.eclipse.jdt.ui//icons/full/obj16/jcu_obj.gif" tooltip="Server/src/Data/GetName.java" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/Data/GetName.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1450&quot; selectionTopPixel=&quot;699&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/Server/src/Data/GetName.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;1458&quot; selectionTopPixel=&quot;524&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>removeOnHide</tags>
         </children>
