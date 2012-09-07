@@ -11,4 +11,7 @@
 <fullyQualifiedTypeName name="IOStream.SendStreamOut"/>
 <fullyQualifiedTypeName name="java.io.ObjectOutputStream"/>
 <fullyQualifiedTypeName name="java.net.Socket"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="Main.DataController"/>
+<fullyQualifiedTypeName name="FileWriters.PayloadLogger"/>
 </qualifiedTypeNameHistroy>

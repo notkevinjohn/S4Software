@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;FileWriters&apos; to &apos;Server/src/SocketHandelers&apos;&#x0D;&#x0A;- Original project: &apos;Terminal&apos;&#x0D;&#x0A;- Destination element: &apos;Server/src/SocketHandelers&apos;&#x0D;&#x0A;- Original element: &apos;Terminal/src/FileWriters&apos;" description="Copy package" destination="=Server/src&lt;SocketHandelers" element1="/src&lt;FileWriters" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1347042894268" version="1.0"/>
+</session>

@@ -18,7 +18,7 @@ public class TerminalDataController extends Thread
 	public boolean isPayloadIPSet = false;
 	public String payloadDeviceName;
 	public Controller controller;
-	
+	public long timeStamp = 0;
 	public TerminalDataController(Socket socket, String payloadDeviceName, Controller controller)
 	{
 		this.controller = controller;

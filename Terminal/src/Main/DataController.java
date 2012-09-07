@@ -22,7 +22,6 @@ import GUI.Terminal;
 import IOStream.GetStreamIn;
 import IOStream.PayloadObjectRX;
 import IOStream.SendStreamOut;
-import Socket.Reconnect;
 
 public class DataController extends Thread 
 {
@@ -94,12 +93,15 @@ public class DataController extends Thread
 					   
 					  if(streamInString.startsWith("PayloadUpdate"))
 					  {
-							payloadDataVector = payloadObjectRX.getPayloadObject(payloadDataVector);
+							payloadDataVector = payloadObjectRX.getPayloadObject(payloadDataVector,this);
 							
 							if(payloadDataVector != null)
 							{
 								updateText(payloadDataVector.lastElement().gpsData , blue);
-								updateText(payloadDataVector.lastElement().scienceData , blue);
+								String tempString = payloadDataVector.lastElement().scienceData;
+								tempString += '\n';
+								
+								updateText(tempString, blue);
 							}
 					  }
 				}

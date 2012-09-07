@@ -79,7 +79,7 @@ public class Controller extends Thread
 	}
 	
 	// Takes a request from a Terminal for the Payload update and updates it with the newest data
-	public void terminalRequestForUpdate(TerminalDataController termDataController, String payloadName)
+	public void  terminalRequestForUpdate(TerminalDataController termDataController, String payloadName)
 	{
 		for(int i = 0; i < payloadDataList.size(); i++)
 		{
@@ -89,8 +89,7 @@ public class Controller extends Thread
 				PayloadData payloadLastData = payloadDataList.get(i).payloadDataVector.get(payloadDataList.get(i).payloadDataVector.size()-1);
 				streamOut.attachSocket(termDataController.socket);
 				streamOut.streamOut("PayloadUpdate");
-				try { Thread.sleep(10); } catch(InterruptedException e) { /* we tried */}
-				
+				try { Thread.sleep(20); } catch(InterruptedException e) { /* we tried */}
 				payloadObjectTX.sendObject(termDataController.socket, payloadLastData, objectOutputStream);
 			}
 		}
@@ -104,5 +103,6 @@ public class Controller extends Thread
 	{
 		listenerList.add(ICompleteTerminalTXEventListener.class, completeTerminalTXEventListener);
 	}
+
 
 }

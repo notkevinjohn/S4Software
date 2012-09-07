@@ -97,10 +97,11 @@ public class RXTXhandeler
 		{
 			if(gpsDataIndex < gpsDataLength )
 			{
-				String tempString = gpsData.get(gpsDataIndex) + "\r\n";
+				String tempString = gpsData.get(gpsDataIndex+1) + "\r\n" + gpsData.get(gpsDataIndex);
 				sendStreamOut.streamOut(tempString);
 				lastReadTime = System.currentTimeMillis();
-				gpsDataIndex++;
+				gpsDataIndex += 2;
+				System.out.println(tempString);
 			}
 			else
 			{

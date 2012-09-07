@@ -33,7 +33,7 @@ public class WiFiWriter
 		wiFiFile = new BufferedWriter(fstream);
 	}
 	
-	public void recieveText(final String returnString)
+	public void recieveText(String returnString)
 	{
 		try 
 		{

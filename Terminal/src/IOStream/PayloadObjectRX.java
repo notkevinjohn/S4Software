@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.Vector;
 import Data.PayloadData;
+import Main.DataController;
 
 public class PayloadObjectRX 
 {
@@ -19,32 +20,26 @@ public class PayloadObjectRX
 	}
 	
 	
-	public   Vector<PayloadData> getPayloadObject(Vector<PayloadData> payloadDataVector)	
-	{
-		try 
-		{				
+	public   Vector<PayloadData> getPayloadObject(Vector<PayloadData> payloadDataVector, DataController dataController)	
+	{	
 			try 
 			{
 				
 				Object updatePayloadData = 	(Object)objectInputStream.readObject();
-				
-				if(objectInputStream.available() >0)
-				{
-					objectInputStream.readObject();
-					System.out.println("DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDdLeftover Stuff ");
-				}
+
 				payloadDataVector.addElement((PayloadData) updatePayloadData);
 			} 
 			catch (ClassNotFoundException e) 
 			{
 				e.printStackTrace();
 			}
+			catch(IOException e)
+			{
+				e.printStackTrace();
+			}
 			
-	    } 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
+	     
+
 		return payloadDataVector;
 	}
 }
