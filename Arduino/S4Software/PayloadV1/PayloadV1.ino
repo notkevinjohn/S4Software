@@ -138,8 +138,9 @@ void setup() {
     gpsSerial.print(WAAS_OFF);
 #endif
 Serial.println("Done!");
-WiFly.JoinRouter("DeviceTesting");
-bmp085Calibration();
+WiFly.JoinRouter("Zoe");
+//bmp085Calibration();
+Serial.print("hi");
 }
 
 void loop() {
@@ -204,8 +205,8 @@ void loop() {
             
             bufferidx++;
          
-            temperature = bmp085GetTemperature(bmp085ReadUT());
-            pressure = bmp085GetPressure(bmp085ReadUP());   
+            temperature = 50;// bmp085GetTemperature(bmp085ReadUT());
+            pressure = 100000;//bmp085GetPressure(bmp085ReadUP());   
             
             
             data += "@,!,";

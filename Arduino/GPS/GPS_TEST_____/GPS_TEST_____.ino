@@ -3,7 +3,7 @@
 
 #define RXPIN 2
 #define TXPIN 3
-#define GPSBUAD 4800
+#define GPSBUAD 9600
 SoftwareSerial uart_gps(RXPIN, TXPIN);
 
 byte gps;

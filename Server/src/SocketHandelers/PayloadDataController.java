@@ -56,21 +56,28 @@ public class PayloadDataController extends Thread
 				  streamInString = getStreamIn.StreamIn(socket);
 				  System.out.println(streamInString);
 				  
-				  if(streamInString.startsWith("$"))
-				  {
-					  int scienceDataStart = streamInString.indexOf('@');
-					  String tempGpsData = streamInString.substring(0,scienceDataStart);
-					  payloadData.gpsData = tempGpsData;
-					  String tempScienceData = streamInString.substring(scienceDataStart);
-					  tempScienceData += '\r';
-					  payloadData.scienceData = tempScienceData;
-					  
-					  payloadData.timeStamp = System.currentTimeMillis();
-					  payloadDataVector.addElement(payloadData);
-					  payloadData = new PayloadData();
-					  payloadLogger.recieveText(tempGpsData);
-					  payloadLogger.recieveText(tempScienceData);
-				  }
+				  
+
+				if(streamInString.startsWith("$GPGGA"))
+				{
+					
+					int scienceDataStart = streamInString.indexOf('@');
+					if(scienceDataStart > 0)
+					{
+					    String tempGpsData = streamInString.substring(0,scienceDataStart);
+					    payloadData.gpsData = tempGpsData;
+						String tempScienceData = streamInString.substring(scienceDataStart);
+						tempScienceData += '\r';
+	
+						payloadData.scienceData = tempScienceData;
+						  
+						payloadData.timeStamp = System.currentTimeMillis();
+						payloadDataVector.addElement(payloadData);
+						payloadData = new PayloadData();
+						payloadLogger.recieveText(tempGpsData);
+						payloadLogger.recieveText(tempScienceData);
+					}
+				}
 			}
 			try { Thread.sleep(10); } catch(InterruptedException e) { }
 		}
